@@ -1,0 +1,23 @@
+.card-club {
+  color: var(--dark);
+  background-color: var(--tertiary-color);
+  border-radius: var(--border-radius);
+  padding: 1em;
+
+  .card-image {
+
+    img {
+      height: 200px
+    }
+  }
+
+  .card-content {
+
+    a {
+      text-decoration: none;
+      color: var(--dark) !important;
+    }
+
+    //padding: 0 1em 0 1em;
+  }
+}

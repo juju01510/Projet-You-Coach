@@ -1,0 +1,16 @@
+<div class="card-club d-flex box-shadow">
+    <div class="card-image col-4 d-flex justify-content-center">
+        <img src="{{ asset('uploads/images/' ~ club.logo) }}" alt="Logo du club">
+    </div>
+    <div class="card-content col-8">
+        <h2 class="card-text">{{ club.name }}</h2>
+        <p>Téléphone : {{ club.phone }}</p>
+        <p>Adresse : {{ club.adress }}</p>
+        <p>Nombre d'équipes : {{ club.team | length }}</p>
+        <p>
+            <a href="{{ path('app_club_show', {'id': club.id}) }}">Détails</a>
+             /
+            <a href="{{ path('app_club_edit', {'id': club.id}) }}">Modifier</a>
+        </p>
+    </div>
+</div>

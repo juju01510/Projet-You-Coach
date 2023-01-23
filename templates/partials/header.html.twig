@@ -1,0 +1,21 @@
+<header class="main-header box-shadow">
+    <nav class="container-fluid navbar navbar-expand-lg">
+        <div class="container-fluid col-lg-10">
+            <a class="navbar-brand" href="{{ path('app_home') }}">
+                <img class="logo" src="{{ asset('build/images/logo.png') }}">
+            </a>
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{{ path('app_home') }}">Connexion</a>
+                    <a class="nav-link" href="{{ path('app_home') }}">Rejoindre une équipe</a>
+                    <a class="nav-link btn custom-btn" href="{{ path('app_club_new') }}">Inscrire mon club</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+

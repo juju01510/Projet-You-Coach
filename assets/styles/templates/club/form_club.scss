@@ -1,0 +1,20 @@
+.block-form {
+  color: var(--light);
+  background-color: var(--quaternary-color);
+  border-radius: var(--border-radius);
+  padding: 3em;
+
+  .form-label {
+    font-family: var(--main-font-bold);
+  }
+
+  .form-control, .form-select {
+    background-color: var(--quaternary-color);
+    color: var(--light);
+    border: 1px solid var(--light);
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

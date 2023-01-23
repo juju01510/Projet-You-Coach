@@ -1,0 +1,16 @@
+{# {{ form_start(form) }} #}
+{#    {{ form_widget(form) }} #}
+{# <div class="d-flex justify-content-end"> #}
+{#    <button class="btn custom-btn mt-3">{{ button_label|default('Ajouter') }}</button> #}
+{# </div> #}
+{# {{ club.name }} #}
+{# {{ form_end(form) }} #}
+
+{{ form_start(form) }}
+    {{ form_row(form.level) }}
+    {{ form_row(form.photo) }}
+    {{ form_row(form.category, {'label': 'Catégorie'}) }}
+<div class="d-flex justify-content-end">
+    <button class="btn custom-btn mt-3">{{ button_label|default('Ajouter') }}</button>
+</div>
+
