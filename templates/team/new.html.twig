@@ -8,7 +8,7 @@
         <div class="col-lg-10 col-sm-12 block-form box-shadow">
             <h1>Nouvelle équipe</h1>
             {{ include('team/_form.html.twig') }}
-            <a href="{{ path('app_team_index') }}">Retour à la liste</a>
+            <a href="{{ path('app_club_show', {'id': club.id}) }}">Retour à la liste</a>
         </div>
     </div>
 

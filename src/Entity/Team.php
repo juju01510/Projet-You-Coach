@@ -20,7 +20,7 @@ class Team
     private ?string $photo = null;
 
     #[ORM\ManyToOne(inversedBy: 'Team')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?Club $club = null;
 
     #[ORM\ManyToOne(inversedBy: 'team')]

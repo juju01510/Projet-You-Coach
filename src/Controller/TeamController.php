@@ -29,8 +29,12 @@ class TeamController extends AbstractController
     public function new(Request $request, Club $club, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
         $team = new Team();
+        $team->setClub($club);
+
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
+
+        $id = $request->attributes->get('id');
 
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->get('photo')->getData();
@@ -62,17 +66,16 @@ class TeamController extends AbstractController
 
 
             $team = $form->getData();
-            $team->setClub($club);
 
             $em = $doctrine->getManager();
             $em->persist($team);
             $em->flush();
 
-            return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_club_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('team/new.html.twig', [
-            'team' => "",
+            'id' => $id,
             'club' => $club,
             'form' => $form,
         ]);
@@ -92,25 +95,36 @@ class TeamController extends AbstractController
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
+        $id = $request->attributes->get('id');
+
         if ($form->isSubmitted() && $form->isValid()) {
             $teamRepository->save($team, true);
 
-            return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_team_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('team/edit.html.twig', [
-            'club' => "",
             'team' => $team,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_team_delete', methods: ['POST'])]
-    public function delete(Request $request, Team $team, TeamRepository $teamRepository): Response
+//    #[Route('/delete/{id}', name: 'app_team_delete', methods: ['POST'])]
+//    public function delete(Request $request, Team $team, TeamRepository $teamRepository): Response
+//    {
+//
+//        if ($this->isCsrfTokenValid('delete' . $team->getId(), $request->request->get('_token'))) {
+//            $teamRepository->remove($team, true);
+//        }
+//
+//        return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
+//    }
+
+    #[Route('delete/{id}', name: 'app_team_delete')]
+    public function delete($id, TeamRepository $teamRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$team->getId(), $request->request->get('_token'))) {
-            $teamRepository->remove($team, true);
-        }
+        $team = $teamRepository->find($id);
+        $teamRepository->remove($team, true);
 
         return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
     }

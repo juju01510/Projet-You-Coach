@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Club;
 use App\Form\ClubType;
 use App\Repository\ClubRepository;
+use App\Repository\TeamRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -76,20 +77,15 @@ class ClubController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_club_show', methods: ['GET'])]
-    public function show(Club $club): Response
+    public function show(Club $club, TeamRepository $teamRepository): Response
     {
+        $teams = $teamRepository->findAllTeamsOfClubOrderByCat($club);
+
         return $this->render('club/show.html.twig', [
             'club' => $club,
+            'teams' => $teams,
         ]);
     }
-
-//    #[Route('/{id}', name: 'app_club_show_team', methods: ['GET'])]
-//    public function showTeam(Club $club): Response
-//    {
-//        return $this->render('team/show.html.twig', [
-//            'club' => $club,
-//        ]);
-//    }
 
     #[Route('/{id}/edit', name: 'app_club_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Club $club, ClubRepository $clubRepository): Response

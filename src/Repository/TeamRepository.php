@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Team;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,6 +39,18 @@ class TeamRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findAllTeamsOfClubOrderByCat($value): mixed
+    {
+        $query = $this->createQueryBuilder('t');
+        $query->where('t.club = :level');
+        $query->setParameter('level', $value);
+        $query->orderBy('t.category', 'DESC');
+
+        return $query->getQuery()->getResult();
+    }
+
+
 
 //    /**
 //     * @return Team[] Returns an array of Team objects

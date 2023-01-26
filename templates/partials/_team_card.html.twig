@@ -1,5 +1,6 @@
 <div class="card-club d-flex box-shadow">
-    <div class="card-image col-4 d-flex justify-content-center">
+    <a class="link" href="{{ path('app_team_show', {'id': team.id}) }}"></a>
+    <div class="card-image col-4 d-flex justify-content-center align-items-center">
         <img src="{{ asset('uploads/images/' ~ team.photo) }}" alt="Logo du club">
     </div>
     <div class="card-content col-8">
@@ -8,9 +9,7 @@
         <p>Club : {{ team.club.name }}  </p>
         <p>Nombre de joueurs : X</p>
         <p>
-            <a href="{{ path('app_team_show', {'id': team.id}) }}">Détails</a>
-            /
-            <a href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
+            <a class="z-1 position-absolute btn custom-btn" href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
         </p>
     </div>
 </div>

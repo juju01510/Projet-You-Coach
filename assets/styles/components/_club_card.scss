@@ -15,9 +15,17 @@
 
     a {
       text-decoration: none;
-      color: var(--dark) !important;
     }
-
-    //padding: 0 1em 0 1em;
   }
+}
+
+.card-club {
+  position: relative;
+}
+.card-club > .link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

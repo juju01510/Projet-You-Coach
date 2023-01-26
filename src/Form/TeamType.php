@@ -26,6 +26,7 @@ class TeamType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
+//            ->add('club')
             ->add('category')
         ;
     }
