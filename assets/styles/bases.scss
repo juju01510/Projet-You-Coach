@@ -33,7 +33,9 @@ a {
 .custom-btn {
   color: var(--light) !important;
   font-family: var(--main-font-bold);
-  background-color: var(--quaternary-color);
+  //background-color: var(--quaternary-color);
+  background-color: transparent;
+  box-shadow: inset 0 0 15px 5px rgba(0, 0, 0, 0.8);
   padding: 0.5em 1em 0.5em 1em;
   border: 1px solid var(--light);
 }
