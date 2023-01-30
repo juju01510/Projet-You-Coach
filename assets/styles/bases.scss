@@ -26,6 +26,16 @@ a {
   text-decoration: none;
 }
 
+.cool {
+  padding: 1em;
+  background-color: var(--tertiary-color);
+  border-radius: 5px;
+
+  p {
+    margin: 0;
+  }
+}
+
 .box-shadow {
   box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8);
 }

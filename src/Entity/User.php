@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\OneToOne(mappedBy: 'manager', cascade: ['persist', 'remove'])]
+    private ?Club $club = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -155,6 +158,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getClub(): ?Club
+    {
+        return $this->club;
+    }
+
+    public function setClub(?Club $club): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($club === null && $this->club !== null) {
+            $this->club->setManager(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($club !== null && $club->getManager() !== $this) {
+            $club->setManager($this);
+        }
+
+        $this->club = $club;
 
         return $this;
     }

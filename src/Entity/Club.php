@@ -30,6 +30,9 @@ class Club
     #[ORM\OneToMany(mappedBy: 'club', targetEntity: Team::class)]
     private Collection $Team;
 
+    #[ORM\OneToOne(inversedBy: 'club', cascade: ['persist', 'remove'])]
+    private ?User $manager = null;
+
     public function __construct()
     {
         $this->Team = new ArrayCollection();
@@ -119,6 +122,18 @@ class Club
                 $team->setClub(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getManager(): ?User
+    {
+        return $this->manager;
+    }
+
+    public function setManager(?User $manager): self
+    {
+        $this->manager = $manager;
 
         return $this;
     }

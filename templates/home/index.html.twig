@@ -4,24 +4,29 @@
 
 {% block main %}
 
-<div class="bloc">
-    <div class="d-flex justify-content-center align-items-center bloc-acceuil">
-        <div class="col-lg-10 col-sm-12 welcome">
-            <div>
-                <h2 class="text-center">Salut bande de nazes !</h2>
-                <p class="text-center mt-5 mb-5">Tu cherches un moyen facile et efficace de gérer ton club ou ton équipe
-                    de
-                    foot, ne vas pas chercher plus loin tu es au bon endroit. </p>
-                <p class="text-center">Inscris toi et crée ton équipe sans attendre !</p>
+    <div class="bloc">
+        <div class="d-flex justify-content-center align-items-center bloc-acceuil">
+            <div class="col-lg-10 col-sm-12 welcome">
+                <div>
+                    <h2 class="text-center">Salut bande de nazes !</h2>
+                    <p class="text-center mt-5 mb-5">Tu cherches un moyen facile et efficace de gérer ton club ou ton
+                        équipe
+                        de
+                        foot, ne vas pas chercher plus loin tu es au bon endroit. </p>
+                    <p class="text-center">Inscris toi et crée ton équipe sans attendre !</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center col-lg-10 col-sm-12 bloc-inscription mt-5">
+                {% if app.user %}
+                    {% if app.user.club %}
+                    {% else %}
+                        <a class="col-lg-2 col-sm-12 btn custom-btn" href="{{ path('app_club_new') }}">Inscrire mon
+                            club</a>
+                    {% endif %}
+                {% else %}
+                {% endif %}
             </div>
         </div>
-        <div class="d-flex justify-content-center col-lg-10 col-sm-12 bloc-inscription mt-5">
-            {% if app.user %}
-            <a class="col-lg-2 col-sm-12 btn custom-btn" href="{{ path('app_club_new') }}">Inscrire mon club</a>
-            {% else %}
-            {% endif %}
-        </div>
     </div>
-</div>
 
 {% endblock %}

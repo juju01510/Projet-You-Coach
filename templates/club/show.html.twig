@@ -5,14 +5,21 @@
 {% block main %}
 
     <div class="d-flex flex-column align-items-center">
-        {% for team in teams %}
-            <div class="col-lg-10 col-sm-12 p-2">
-                {% include('partials/_team_card.html.twig') %}
+        {% if teams %}
+            {% for team in teams %}
+                <div class="col-lg-10 col-sm-12 p-2">
+                    {% include('partials/_team_card.html.twig') %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="cool">
+                <p>Votre club ne compte aucune équipe actuellement.</p>
+                <p>Cliquez sur le bouton ci-dessous pour créer votre première équipe !</p>
             </div>
-        {% endfor %}
-        <div class="col-lg-10 col-sm-12 d-flex justify-content-end">
-            <a href="{{ path('app_club_index') }}">Retour à la liste</a>
-        </div>
+        {% endif %}
+        {#        <div class="col-lg-10 col-sm-12 d-flex justify-content-end"> #}
+        {#            <a href="{{ path('app_club_index') }}">Retour à la liste</a> #}
+        {#        </div> #}
         <a class="btn custom-btn m-5" href="{{ path('app_team_new', {'id': club.id}) }}">Ajouter une équipe</a>
     </div>
 
@@ -20,14 +27,14 @@
 
 
 
-{#   {% for team in club.team |filter(team => (team.active == true)) %}#}
-{#       <div class="col-lg-10 col-sm-12 p-2">#}
-{#           {% include('partials/_team_card.html.twig') %}#}
-{#       </div>#}
-{#   {% else %}#}
-{#       <div class="col-lg-10 col-sm-12 p-2">#}
-{#           <div class="card-club box-shadow">#}
-{#               <p class="text-center">Ce club ne compte pas d'équipe pour le moment</p>#}
-{#           </div>#}
-{#       </div>#}
-{#   {% endfor %}#}
+{#   {% for team in club.team |filter(team => (team.active == true)) %} #}
+{#       <div class="col-lg-10 col-sm-12 p-2"> #}
+{#           {% include('partials/_team_card.html.twig') %} #}
+{#       </div> #}
+{#   {% else %} #}
+{#       <div class="col-lg-10 col-sm-12 p-2"> #}
+{#           <div class="card-club box-shadow"> #}
+{#               <p class="text-center">Ce club ne compte pas d'équipe pour le moment</p> #}
+{#           </div> #}
+{#       </div> #}
+{#   {% endfor %} #}

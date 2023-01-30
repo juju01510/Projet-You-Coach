@@ -28,7 +28,11 @@ class ClubController extends AbstractController
     #[Route('/new', name: 'app_club_new')]
     public function new(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
+        $user = $this->getUser();
+
         $club = new Club();
+        $club->setManager($user);
+
         $form = $this->createForm(ClubType::class, $club);
         $form->handleRequest($request);
 
@@ -67,11 +71,12 @@ class ClubController extends AbstractController
             $em->persist($club);
             $em->flush();
 
-            return $this->redirectToRoute('app_club_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('club/new.html.twig', [
 //            'club' => $club,
+            'user' => $user,
             'form' => $form,
         ]);
     }
@@ -96,7 +101,7 @@ class ClubController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $clubRepository->save($club, true);
 
-            return $this->redirectToRoute('app_club_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('club/edit.html.twig', [
