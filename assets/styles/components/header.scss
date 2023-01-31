@@ -4,7 +4,7 @@
   align-items: center;
 
   .logo {
-    width: 150px;
+    width: 120px;
   }
 
   .custom-toggler.navbar-toggler {
@@ -18,21 +18,35 @@
     }
   }
 
-  .navbar-collapse {
-    justify-content: end;
+  .navbar-nav {
+    align-items: center;
 
-    .navbar-nav {
-      align-items: center;
+    .dropdown-menu {
+      background-color: var(--quaternary-color);
 
-      .nav-link {
-        font-family: var(--main-font-bold);
-        margin: 0 0 0 4em;
+      .dropdown-item {
+        color: var(--light) !important;
       }
+
+      .dropdown-item:hover {
+        background-color: transparent;
+      }
+
+      .dropdown-item:active {
+        background-color: transparent;
+      }
+    }
+
+    .nav-link {
+      //font-family: var(--main-font-bold);
     }
   }
 }
 
-@media (max-width:992px) {
+
+
+
+@media (max-width: 992px) {
 
   .logo {
     width: 300px !important;

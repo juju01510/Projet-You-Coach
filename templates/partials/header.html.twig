@@ -1,3 +1,35 @@
+{# <header class="main-header box-shadow"> #}
+{#    <nav class="container-fluid navbar navbar-expand-lg"> #}
+{#        <div class="container-fluid col-lg-10"> #}
+{#            <a class="navbar-brand" href="{{ path('app_home') }}"> #}
+{#                <img class="logo" src="{{ asset('build/images/logo.png') }}"> #}
+{#            </a> #}
+{#            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" #}
+{#                    data-bs-target="#navbarNavAltMarkup" #}
+{#                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> #}
+{#                <span class="navbar-toggler-icon"></span> #}
+{#            </button> #}
+{#            <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> #}
+{#                <div class="navbar-nav"> #}
+{#                    {% if app.user %} #}
+{#                        <a class="nav-link">{{ app.user.firstname }} {{ app.user.lastname }} </a> #}
+{#                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a> #}
+{#                        #}{#                        <a class="nav-link" href="{{ path('app_home') }}">Rejoindre une équipe</a> #}
+{#                        {% if app.user.club %} #}
+{#                            <a class="nav-link btn custom-btn" href="{{ path('app_club_show', {'id': app.user.club.id}) }}">Mon club</a> #}
+{#                        {% else %} #}
+{#                            <a class="nav-link btn custom-btn" href="{{ path('app_club_new') }}">Inscrire mon club</a> #}
+{#                        {% endif %} #}
+{#                    {% else %} #}
+{#                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a> #}
+{#                        <a class="nav-link btn custom-btn" href="{{ path('app_register') }}">Inscription</a> #}
+{#                    {% endif %} #}
+{#                </div> #}
+{#            </div> #}
+{#        </div> #}
+{#    </nav> #}
+{# </header> #}
+
 <header class="main-header box-shadow">
     <nav class="container-fluid navbar navbar-expand-lg">
         <div class="container-fluid col-lg-10">
@@ -9,23 +41,34 @@
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    {% if app.user %}
-                        <a class="nav-link">{{ app.user.firstname }} {{ app.user.lastname }} </a>
-                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                        {#                        <a class="nav-link" href="{{ path('app_home') }}">Rejoindre une équipe</a> #}
-                        {% if app.user.club %}
-                            <a class="nav-link btn custom-btn" href="{{ path('app_club_show', {'id': app.user.club.id}) }}">Mon club</a>
-                        {% else %}
-                            <a class="nav-link btn custom-btn" href="{{ path('app_club_new') }}">Inscrire mon club</a>
-                        {% endif %}
-                    {% else %}
+            <ul class="navbar-nav">
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            {{ app.user.firstname }} {{ app.user.lastname }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id' : app.user.id}) }}">Mon compte</a></li>
+                            {% if app.user.club %}
+                                <li><a class="dropdown-item"
+                                       href="{{ path('app_club_show', {'id': app.user.club.id}) }}">Mon club</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="{{ path('app_club_new') }}">Inscrire mon club</a>
+                                </li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                        <a class="nav-link btn custom-btn" href="{{ path('app_register') }}">Inscription</a>
-                    {% endif %}
-                </div>
-            </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ms-3 btn custom-btn" href="{{ path('app_register') }}">Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </nav>
 </header>

@@ -126,6 +126,8 @@ class TeamController extends AbstractController
         $team = $teamRepository->find($id);
         $teamRepository->remove($team, true);
 
+        $this->addFlash('success', 'Votre équipe a été supprimé avec succès.');
+
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }
