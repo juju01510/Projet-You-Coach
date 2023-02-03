@@ -36,11 +36,38 @@ a {
   }
 }
 
-.title {
-  color: var(--light);
-  background-color: var(--quaternary-color);
-  padding: 0.2em;
-  border-radius: var(--border-radius);
+.card-title-club {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  p {
+    color: var(--light);
+    font-family: var(--main-font-bold);
+    font-size: 1.3em;
+    padding: 0.5em;
+    //border-radius: 0 5px 0 5px;
+    //border: 2px solid var(--tertiary-color);
+    //border-left: 2px solid var(--tertiary-color);
+    border-bottom: 2px solid var(--light);
+  }
+}
+
+.card-title-team {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  p {
+    color: var(--dark);
+    font-family: var(--main-font-bold);
+    font-size: 1.3em;
+    padding: 0.5em;
+    //border-radius: 0 5px 0 5px;
+    //border: 2px solid var(--quaternary-color);
+    //border-left: 2px solid var(--quaternary-color);
+    border-bottom: 2px solid var(--dark);
+  }
 }
 
 .box-shadow {
@@ -50,24 +77,62 @@ a {
 .custom-btn {
   color: var(--light) !important;
   font-family: var(--main-font-bold);
-  //background-color: var(--quaternary-color);
   background-color: transparent;
-  box-shadow: inset 0 0 15px 5px rgba(0, 0, 0, 0.8);
   padding: 0.5em 1em 0.5em 1em;
-  border: 1px solid var(--light);
+  border: 2px solid var(--light);
+  border-radius: var(--border-radius);
+  bottom: 1em;
+  right: 1em;
 }
 
 .custom-btn:hover {
-  color: var(--dark) !important;
-  background-color: var(--tertiary-color);
-  border: 1px solid var(--light);
   opacity: 0.8;
 }
 
 .custom-btn:active {
-  background-color: var(--light) !important;
   opacity: 1 !important;
 }
+
+
+.custom-btn-light {
+  color: var(--dark) !important;
+  font-family: var(--main-font-bold);
+  background-color: transparent;
+  padding: 0.5em 1em 0.5em 1em;
+  border: 2px solid var(--dark);
+  border-radius: var(--border-radius);
+  bottom: 1em;
+  right: 1em;
+}
+
+.custom-btn-light:hover {
+  opacity: 0.8;
+}
+
+.custom-btn-light:active {
+  opacity: 1 !important;
+}
+
+.new-custom-btn {
+  color: var(--dark) !important;
+  font-family: var(--main-font-bold);
+  background-color: var(--tertiary-color);
+  padding: 0.5em 1em 0.5em 1em;
+  border-bottom: 2px solid var(--dark);
+  border-radius: var(--border-radius);
+  bottom: 1em;
+  right: 1em;
+}
+
+.new-custom-btn:hover {
+  opacity: 0.8;
+}
+
+.new-custom-btn:active {
+  opacity: 1 !important;
+}
+
+
 
 
 

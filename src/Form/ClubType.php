@@ -16,6 +16,7 @@ class ClubType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => "Nom",
+                'attr' => ['placeholder' => 'Nom'],
             ])
             ->add('logo', FileType::class, [
                 'mapped' => false,
@@ -23,9 +24,11 @@ class ClubType extends AbstractType
             ])
             ->add('adress', TextType::class, [
                 'label' => "Adresse",
+                'attr' => ['placeholder' => 'Adresse']
             ])
             ->add('phone', TextType::class, [
-                'label' => "Téléphone"
+                'label' => "Téléphone",
+                'attr' => ['placeholder' => 'Téléphone']
             ]);
     }
 

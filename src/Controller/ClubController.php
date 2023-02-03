@@ -117,6 +117,6 @@ class ClubController extends AbstractController
             $clubRepository->remove($club, true);
         }
 
-        return $this->redirectToRoute('app_club_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }

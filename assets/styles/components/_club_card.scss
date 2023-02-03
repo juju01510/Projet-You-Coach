@@ -1,6 +1,4 @@
 .card-club {
-  color: var(--dark);
-  background-color: var(--tertiary-color);
   border-radius: var(--border-radius);
   padding: 1em;
 
@@ -28,4 +26,14 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.card-club-back {
+  color: var(--light);
+  background-color: var(--quaternary-color);
+}
+
+.card-team-back {
+  color: var(--dark);
+  background-color: var(--tertiary-color)
 }

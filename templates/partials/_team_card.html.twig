@@ -1,15 +1,22 @@
-<div class="card-club d-flex box-shadow">
+<div class="card-club card-team-back d-flex box-shadow">
     <a class="link" href="{{ path('app_team_show', {'id': team.id}) }}"></a>
+    <div class="card-title-team">
+        <p>ÉQUIPE</p>
+    </div>
     <div class="card-image col-4 d-flex justify-content-center align-items-center">
         <img src="{{ asset('uploads/images/' ~ team.photo) }}" alt="Logo du club">
     </div>
     <div class="card-content col-8">
-        <h2 class="card-text">Catégorie : {{ team.category }}</h2>
-        <p>Equipe {{ team.level }}</p>
-        <p>Club : {{ team.club.name }}  </p>
+{#        <div class="d-flex justify-content-between">#}
+            <h2 class="card-text">{{ team.category }} - {{ team.level }}</h2>
+{#        </div>#}
+{#        <p>Équipe </p>#}
+{#        <p>Club : {{ team.club.name }}  </p>#}
+        <p>Coach : XXXX</p>
         <p>Nombre de joueurs : X</p>
         <p>
-            <a class="z-1 position-absolute btn custom-btn" href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
+            <a class="z-1 position-absolute custom-btn-light"
+               href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
         </p>
     </div>
 </div>

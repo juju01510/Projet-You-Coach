@@ -5,27 +5,32 @@
 {% block main %}
 
     <div class="d-flex flex-column align-items-center">
-        <h2 class="title">MON CLUB</h2>
-        <div class="col-lg-10 col-sm-12 p-2 mb-3">
+        {#        <h2 class="title box-shadow">MON CLUB</h2> #}
+        <div class="col-lg-10 col-sm-12 p-2">
             {% include('partials/_club_card.html.twig') %}
         </div>
+
+        <div class="d-flex justify-content-center col-lg-10 col-sm-12 mb-5 p-2">
+            <a class="new-custom-btn col-12 d-flex justify-content-center box-shadow" href="{{ path('app_team_new', {'id': club.id}) }}">Ajouter
+                une équipe</a>
+        </div>
+
         {% if teams %}
-            <h2 class="title">MES EQUIPES</h2>
+            {#            <h2 class="title box-shadow">MES EQUIPES</h2> #}
             {% for team in teams %}
                 <div class="col-lg-10 col-sm-12 p-2">
                     {% include('partials/_team_card.html.twig') %}
                 </div>
             {% endfor %}
         {% else %}
-            <div class="cool">
+            <div class="cool box-shadow">
                 <p>Votre club ne compte aucune équipe actuellement.</p>
-                <p>Cliquez sur le bouton ci-dessous pour créer votre première équipe !</p>
+                <p>Cliquez sur le bouton ci-dessus pour créer votre première équipe !</p>
             </div>
         {% endif %}
         {#        <div class="col-lg-10 col-sm-12 d-flex justify-content-end"> #}
         {#            <a href="{{ path('app_club_index') }}">Retour à la liste</a> #}
         {#        </div> #}
-        <a class="btn custom-btn m-5" href="{{ path('app_team_new', {'id': club.id}) }}">Ajouter une équipe</a>
     </div>
 
 {% endblock %}

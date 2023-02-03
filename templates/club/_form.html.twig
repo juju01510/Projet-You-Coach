@@ -1,9 +1,13 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-<div class="d-flex justify-content-end">
-    <button class="btn custom-btn mt-3">{{ button_label|default('Bienvenue') }}</button>
+<div class="d-flex justify-content-between mt-5">
+    <button class="custom-btn">{{ button_label|default('Bienvenue') }}</button>
+    {{ form_end(form) }}
+    {% if app.user.club %}
+    {{ include('club/_delete_form.html.twig') }}
+    {% else %}
+    {% endif %}
 </div>
-{{ form_end(form) }}
 
 
 

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block main %}
+
+    {% for message in app.flashes('success') %}
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="col-lg-10 col-sm-12 alert alert-success">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="col-lg-10 col-sm-12 block-form box-shadow">
+            <h1 class="mb-3">Mon compte</h1>
+                {{ include('user/_form.html.twig', {'button_label': 'Valider'}) }}
+            {#            <a href="{{ path('app_user_index') }}">back to list</a> #}
+{#            <div class="d-flex justify-content-end mt-3">#}
+{#                {{ include('user/_delete_form.html.twig') }}#}
+{#            </div>#}
+        </div>
+    </div>
+
+{% endblock %}
