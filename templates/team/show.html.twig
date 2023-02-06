@@ -5,39 +5,41 @@
 {% block main %}
 
     <div class="d-flex flex-column align-items-center">
-{#        {% for team in club.team %}#}
-            <div class="col-lg-10 col-sm-12 p-2">
-                {% include('partials/_team_card.html.twig') %}
-            </div>
-{#        {% endfor %}#}
-        <div class="col-lg-10 col-sm-12 d-flex justify-content-end">
-            <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Liste d'équipes</a>
+        <div class="col-lg-10 col-sm-12 p-2">
+            <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>
         </div>
-            <a class="btn custom-btn m-5" href="#">Ajouter un joueur</a>
+        {#        {% for team in club.team %} #}
+        <div class="col-lg-10 col-sm-12 p-2">
+            {% include('partials/_team_card.html.twig') %}
+        </div>
+        {#        {% endfor %} #}
+        <div class="d-flex justify-content-center col-lg-10 col-sm-12 mb-5 p-2">
+            <a class="new-custom-btn col-12 d-flex justify-content-center box-shadow" href="{{ path('app_register') }}">Ajouter un joueur</a>
+        </div>
     </div>
 
-{#    <h1>Team</h1>#}
+    {#    <h1>Team</h1> #}
 
-{#    <table class="table">#}
-{#        <tbody>#}
-{#            <tr>#}
-{#                <th>Id</th>#}
-{#                <td>{{ team.id }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Level</th>#}
-{#                <td>{{ team.level }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Photo</th>#}
-{#                <td>{{ team.photo }}</td>#}
-{#            </tr>#}
-{#        </tbody>#}
-{#    </table>#}
+    {#    <table class="table"> #}
+    {#        <tbody> #}
+    {#            <tr> #}
+    {#                <th>Id</th> #}
+    {#                <td>{{ team.id }}</td> #}
+    {#            </tr> #}
+    {#            <tr> #}
+    {#                <th>Level</th> #}
+    {#                <td>{{ team.level }}</td> #}
+    {#            </tr> #}
+    {#            <tr> #}
+    {#                <th>Photo</th> #}
+    {#                <td>{{ team.photo }}</td> #}
+    {#            </tr> #}
+    {#        </tbody> #}
+    {#    </table> #}
 
-{#    <a href="{{ path('app_team_index') }}">back to list</a>#}
+    {#    <a href="{{ path('app_team_index') }}">back to list</a> #}
 
-{#    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>#}
+    {#    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a> #}
 
-{#    {{ include('team/_delete_form.html.twig') }}#}
+    {#    {{ include('team/_delete_form.html.twig') }} #}
 {% endblock %}
