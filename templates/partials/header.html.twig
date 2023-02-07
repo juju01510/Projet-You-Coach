@@ -42,21 +42,61 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <ul class="navbar-nav">
-                {% if app.user %}
+                {% if is_granted('ROLE_MANAGER') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
                             {{ app.user.firstname }} {{ app.user.lastname }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id' : app.user.id}) }}">Mon compte</a></li>
+                            <li class="border-bottom">
+                                <p class="dropdown-item">MANAGER</p>
+                            </li>
+                            <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id' : app.user.id}) }}">Mon
+                                    compte</a></li>
                             {% if app.user.club %}
                                 <li><a class="dropdown-item"
                                        href="{{ path('app_club_show', {'id': app.user.club.id}) }}">Mon club</a></li>
+                                <li><a class="dropdown-item"
+                                       href="{{ path('app_register') }}">Nouveau membre</a></li>
                             {% else %}
                                 <li><a class="dropdown-item" href="{{ path('app_club_new') }}">Inscrire mon club</a>
                                 </li>
                             {% endif %}
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
+                        </ul>
+                    </li>
+                {% elseif is_granted('ROLE_PLAYER') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            {{ app.user.firstname }} {{ app.user.lastname }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="border-bottom">
+                                <p class="dropdown-item">JOUEUR</p>
+                            </li>
+                            <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id' : app.user.id}) }}">Mon
+                                    compte</a></li>
+                            <li><a class="dropdown-item"
+                                   href="{{ path('app_club_show', {'id' : app.user.team.club.id}) }}">Mon club</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
+                        </ul>
+                    </li>
+                {% elseif is_granted('ROLE_COACH') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            {{ app.user.firstname }} {{ app.user.lastname }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="border-bottom">
+                                <p class="dropdown-item">COACH</p>
+                            </li>
+                            <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id' : app.user.id}) }}">Mon
+                                    compte</a></li>
+                            <li><a class="dropdown-item"
+                                   href="{{ path('app_club_show', {'id' : app.user.team.club.id}) }}">Mon club</a></li>
                             <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
                         </ul>
                     </li>

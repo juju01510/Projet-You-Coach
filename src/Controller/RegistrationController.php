@@ -63,7 +63,7 @@ class RegistrationController extends AbstractController
 //                $authenticator,
 //                $request
 //            );
-            $this->addFlash('success', 'Votre compte a été créé avec succès! Confirmez votre adresse mail afin de pouvoir vous connecter.');
+            $this->addFlash('success', "Le compte a été créé avec succès! Confirmer l'adresse mail afin de pouvoir se connecter.");
             return $this->redirectToRoute('app_home');
         }
 
