@@ -13,8 +13,19 @@
             {% include('partials/_team_card.html.twig') %}
         </div>
         {#        {% endfor %} #}
-        <div class="d-flex justify-content-center col-lg-10 col-sm-12 mb-5 p-2">
-            <a class="new-custom-btn col-12 d-flex justify-content-center box-shadow" href="{{ path('app_register') }}">Ajouter un membre</a>
+        {% if is_granted('ROLE_PLAYER') %}
+        {% else %}
+            <div class="d-flex justify-content-center col-lg-10 col-sm-12 mb-5 p-2">
+                <a class="new-custom-btn col-12 d-flex justify-content-center box-shadow"
+                   href="{{ path('app_register') }}">Ajouter un membre</a>
+            </div>
+        {% endif %}
+        <div class="d-flex flex-wrap col-lg-10 col-sm-12">
+        {% for player in team.player %}
+                <div class="col-lg-3 col-sm-12 p-2">
+                    {% include('partials/_player_card.html.twig') %}
+                </div>
+        {% endfor %}
         </div>
     </div>
 
