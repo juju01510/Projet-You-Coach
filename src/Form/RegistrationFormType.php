@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension;
 use Symfony\Component\Form\Extension\Validator\Type\FormTypeValidatorExtension;
 use Symfony\Component\Form\Extension\Validator\Type\UploadValidatorExtension;
@@ -41,6 +43,21 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Téléphone'
                 ],
             ])
+            ->add('roles', ChoiceType::class, [
+                'required' => true,
+                'multiple' => false,
+                'expanded' => true,
+                'choices' => [
+                    'Manager' => 'ROLE_MANAGER',
+                    'Coach' => 'ROLE_COACH',
+                    'Joueur' => 'ROLE_PLAYER',
+                ],
+                'choice_attr' => [
+                    'Joueur' => ['class' => 'roles'],
+                    'Coach' => ['class' => 'roles'],
+                    'Manager' => ['class' => 'roles']
+                ]
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -55,9 +72,7 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'Les mots de passe doivent correspondre',
                 'required' => true,
 
-                'first_options'  => [
-//                    'label' => 'Mot de passe',
-//                    'hash_property_path' => 'password',
+                'first_options' => [
                     'attr' => [
                         'placeholder' => 'Mot de passe'
                     ],
@@ -70,10 +85,6 @@ class RegistrationFormType extends AbstractType
                             'minMessage' => 'Votre mot de passe doit comprendre au moins {{ limit }} caractères',
                             'max' => 50,
                         ]),
-//                        new Regex([
-//                            'message' => 'Votre mot de passe doit comprendre au moins 6 caractères, une majuscule, une minuscule, un chiffre et un caractère spéciale',
-//                            'pattern' => '/^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.\W)(?!.* ).{6,}$/',
-//                        ])
                     ],
                 ],
 
@@ -84,33 +95,20 @@ class RegistrationFormType extends AbstractType
 
                 'mapped' => false,
             ]);
-//            ->add('plainPassword', RepeatedType::class, [
-//                'type' => PasswordType::class,
-//                'invalid_message' => 'Les mots de passe doivent correspondre',
-//                'options' => ['attr' => ['class' => 'password-field']],
-//                'required' => true,
-//                'first_options'  => ['label' => 'Mot de passe'],
-//                'second_options' => ['label' => 'Confirmez votre mot de passe'],
-//            ]);
-//            ->add('plainPassword', PasswordType::class, [
-//                // instead of being set onto the object directly,
-//                // this is read and encoded in the controller
-//                'mapped' => false,
-//                'attr' => ['autocomplete' => 'new-password'],
-//                'constraints' => [
-//                    new NotBlank([
-//                        'message' => 'Please enter a password',
-//                    ]),
-//                    new Length([
-//                        'min' => 6,
-//                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-//                        // max length allowed by Symfony for security reasons
-//                        'max' => 4096,
-//                    ]),
-//                ],
-//            ])
 
-        ;
+        // Data transformer
+        $builder->get('roles')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($rolesArray) {
+                    // transform the array to a string
+                    return count($rolesArray) ? $rolesArray[0] : null;
+                },
+                function ($rolesString) {
+                    // transform the string back to an array
+                    return [$rolesString];
+                }
+            ));
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

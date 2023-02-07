@@ -18,6 +18,15 @@
             {{ form_row(registrationForm.email, {
                 'attr' : {'placeholder': 'Email'}
             }) }}
+
+            {% if is_granted('ROLE_MANAGER') %}
+                {{ form_row(registrationForm.roles) }}
+            {% else %}
+                {{ form_row(registrationForm.roles, {
+                    'attr' : {'class': 'd-none'}
+                }) }}
+            {% endif %}
+
             {{ form_row(registrationForm.plainPassword) }}
             <div class="d-flex justify-content-between mt-5">
                 {{ form_row(registrationForm.agreeTerms, {
