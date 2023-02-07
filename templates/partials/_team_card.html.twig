@@ -12,8 +12,8 @@
 {#        </div>#}
 {#        <p>Équipe </p>#}
 {#        <p>Club : {{ team.club.name }}  </p>#}
-        <p>Coach : XXXX</p>
-        <p>Nombre de joueurs : X</p>
+        <p>Coach :  X </p>
+        <p>Nombre de joueurs : {{ team.player | length }}</p>
         <p>
             <a class="z-1 position-absolute custom-btn-light"
                href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>

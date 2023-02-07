@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Club;
+use App\Entity\Team;
 use App\Form\ClubType;
 use App\Repository\ClubRepository;
 use App\Repository\TeamRepository;
@@ -84,6 +85,8 @@ class ClubController extends AbstractController
     #[Route('/{id}', name: 'app_club_show', methods: ['GET'])]
     public function show(Club $club, TeamRepository $teamRepository): Response
     {
+
+
         $teams = $teamRepository->findAllTeamsOfClubOrderByCat($club);
 
         return $this->render('club/show.html.twig', [
