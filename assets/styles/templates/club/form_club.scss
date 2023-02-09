@@ -28,13 +28,18 @@
     border-radius: 0;
 
     option {
-      color: var(--dark)
+      color: var(--light);
+      background-color: var(--quaternary-color);
     }
   }
 
   a {
     text-decoration: none;
   }
+}
+
+.col-form-label {
+  display: none;
 }
 
 

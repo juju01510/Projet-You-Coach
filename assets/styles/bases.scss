@@ -133,6 +133,34 @@ a {
 }
 
 
+$primary-color: #111d4a;
+$secondary-color: rgb(194, 202, 232);
+$tertiary-color: #8380b6;
+$quaternary-color: #8789c0;
+//Scrollbar----------------------------------------------------------------
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tertiary-color) var(--quaternary-color);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--quaternary-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--tertiary-color);
+  border-radius: 20px;
+  border: 3px solid var(--quaternary-color);
+}
+
+
 
 
 

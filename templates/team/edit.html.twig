@@ -4,13 +4,16 @@
 
 {% block main %}
 
-    <div class="d-flex justify-content-center align-items-center flex-grow-1">
-        <div class="col-lg-10 col-sm-12 block-form box-shadow">
+    <div class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
+        <div class="col-lg-10 col-sm-12">
+            <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>
+        </div>
+        <div class="col-lg-10 col-sm-12 mt-1 block-form box-shadow">
             <h1>Modifier l'équipe</h1>
             {{ include('team/_form.html.twig', {'button_label': 'Modifier'}) }}
             <div class="d-flex align-items-end flex-column mt-3">
                 <a href="{{ path('app_team_delete', {'id' : team.id}) }}" class="btn btn-danger">Supprimer</a>
-                <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>
+{#                <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>#}
             </div>
         </div>
     </div>

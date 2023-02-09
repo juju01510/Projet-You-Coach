@@ -7,16 +7,17 @@
         <img src="{{ asset('uploads/images/' ~ team.photo) }}" alt="Logo du club">
     </div>
     <div class="card-content col-8">
-{#        <div class="d-flex justify-content-between">#}
-            <h2 class="card-text">{{ team.category }} - {{ team.level }}</h2>
-{#        </div>#}
-{#        <p>Équipe </p>#}
-{#        <p>Club : {{ team.club.name }}  </p>#}
-        <p>Coach :  X </p>
+
+        <h2 class="card-text">{{ team.category }} - {{ team.level }}</h2>
+        <p>Coach : X </p>
         <p>Nombre de joueurs : {{ team.player | length }}</p>
-        <p>
-            <a class="z-1 position-absolute custom-btn-light"
-               href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
-        </p>
+
+        {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
+            <p>
+                <a class="z-1 position-absolute custom-btn-light"
+                   href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
+            </p>
+        {% endif %}
+
     </div>
 </div>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\SearchUserTeamType;
 use App\Security\EmailVerifier;
 use App\Security\LoginAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,6 +33,7 @@ class RegistrationController extends AbstractController
     {
         $user = new User();
         $user->setRoles(["ROLE_MANAGER"]);
+
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);

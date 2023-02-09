@@ -32,6 +32,7 @@ class TeamController extends AbstractController
         $team = new Team();
         $team->setClub($club);
 
+
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 

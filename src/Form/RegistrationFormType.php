@@ -2,7 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Club;
+use App\Entity\Team;
 use App\Entity\User;
+use App\Repository\TeamRepository;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -46,7 +51,7 @@ class RegistrationFormType extends AbstractType
             ->add('roles', ChoiceType::class, [
                 'required' => true,
                 'multiple' => false,
-                'expanded' => true,
+                'expanded' => false,
                 'choices' => [
                     'Manager' => 'ROLE_MANAGER',
                     'Coach' => 'ROLE_COACH',
@@ -57,6 +62,19 @@ class RegistrationFormType extends AbstractType
                     'Coach' => ['class' => 'roles'],
                     'Manager' => ['class' => 'roles']
                 ]
+            ])
+            ->add('team', EntityType::class,[
+                'required' => true,
+                'label' => 'Choisir un type',
+                'class' => Team::class,
+//                'query_builder' => function (EntityRepository $er) use ($club) {
+//                    return $er->createQueryBuilder('t')
+//                        ->where('t.club = :club')
+//                        ->setParameter('club', $club);
+//                },
+                'choice_label' => function ($team) {
+                    return $team->getClub()->getName() . ' - ' . $team->getCategory() . ' - ' . $team->getLevel();
+                },
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

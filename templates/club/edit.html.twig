@@ -4,14 +4,13 @@
 
 {% block main %}
 
-    <div class="d-flex justify-content-center align-items-center flex-grow-1">
-        <div class="col-lg-10 col-sm-12 block-form box-shadow">
+    <div class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
+        <div class="col-lg-10 col-sm-12">
+            <a href="{{ path('app_club_show', {'id' : club.id}) }}">Retour</a>
+        </div>
+        <div class="col-lg-10 col-sm-12 mt-1 block-form box-shadow">
             <h1 class="mb-3">Modifier le club</h1>
             {{ include('club/_form.html.twig', {'button_label': 'Modifier'}) }}
-            <div class="d-flex justify-content-end mt-3">
-                <a href="{{ path('app_club_show', {'id' : club.id}) }}">Retour</a>
-{#                {{ include('club/_delete_form.html.twig') }}#}
-            </div>
         </div>
     </div>
 

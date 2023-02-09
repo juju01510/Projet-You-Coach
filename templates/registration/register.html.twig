@@ -21,8 +21,12 @@
 
             {% if is_granted('ROLE_MANAGER') %}
                 {{ form_row(registrationForm.roles) }}
+                {{ form_row(registrationForm.team) }}
             {% else %}
                 {{ form_row(registrationForm.roles, {
+                    'attr' : {'class': 'd-none'}
+                }) }}
+                {{ form_row(registrationForm.team, {
                     'attr' : {'class': 'd-none'}
                 }) }}
             {% endif %}

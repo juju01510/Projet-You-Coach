@@ -5,46 +5,31 @@
 {% block main %}
 
     <div class="d-flex flex-column align-items-center">
-        {#        <h2 class="title box-shadow">MON CLUB</h2> #}
+
         <div class="col-lg-10 col-sm-12 p-2">
             {% include('partials/_club_card.html.twig') %}
         </div>
 
+        {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
         <div class="d-flex justify-content-center col-lg-10 col-sm-12 mb-5 p-2">
             <a class="new-custom-btn col-12 d-flex justify-content-center box-shadow" href="{{ path('app_team_new', {'id': club.id}) }}">Ajouter
                 une équipe</a>
         </div>
+        {% endif %}
 
         {% if teams %}
-            {#            <h2 class="title box-shadow">MES EQUIPES</h2> #}
             {% for team in teams %}
                 <div class="col-lg-10 col-sm-12 p-2">
                     {% include('partials/_team_card.html.twig') %}
                 </div>
             {% endfor %}
         {% else %}
-            <div class="cool box-shadow">
+            <div class="col-lg-10 col-sm-12 p-2 d-flex justify-content-center align-items-center flex-column cool box-shadow">
                 <p>Votre club ne compte aucune équipe actuellement.</p>
                 <p>Cliquez sur le bouton ci-dessus pour créer votre première équipe !</p>
             </div>
         {% endif %}
-        {#        <div class="col-lg-10 col-sm-12 d-flex justify-content-end"> #}
-        {#            <a href="{{ path('app_club_index') }}">Retour à la liste</a> #}
-        {#        </div> #}
+
     </div>
 
 {% endblock %}
-
-
-
-{#   {% for team in club.team |filter(team => (team.active == true)) %} #}
-{#       <div class="col-lg-10 col-sm-12 p-2"> #}
-{#           {% include('partials/_team_card.html.twig') %} #}
-{#       </div> #}
-{#   {% else %} #}
-{#       <div class="col-lg-10 col-sm-12 p-2"> #}
-{#           <div class="card-club box-shadow"> #}
-{#               <p class="text-center">Ce club ne compte pas d'équipe pour le moment</p> #}
-{#           </div> #}
-{#       </div> #}
-{#   {% endfor %} #}

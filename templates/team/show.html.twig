@@ -8,18 +8,18 @@
         <div class="col-lg-10 col-sm-12 p-2">
             <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>
         </div>
-        {#        {% for team in club.team %} #}
+
         <div class="col-lg-10 col-sm-12 p-2">
             {% include('partials/_team_card.html.twig') %}
         </div>
-        {#        {% endfor %} #}
-        {% if is_granted('ROLE_PLAYER') %}
-        {% else %}
+
+        {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
             <div class="d-flex justify-content-center col-lg-10 col-sm-12 mb-5 p-2">
                 <a class="new-custom-btn col-12 d-flex justify-content-center box-shadow"
                    href="{{ path('app_register') }}">Ajouter un membre</a>
             </div>
         {% endif %}
+
         <div class="d-flex flex-wrap col-lg-10 col-sm-12">
         {% for player in team.player %}
                 <div class="col-lg-2 col-sm-12 p-2">
@@ -27,30 +27,7 @@
                 </div>
         {% endfor %}
         </div>
+
     </div>
 
-    {#    <h1>Team</h1> #}
-
-    {#    <table class="table"> #}
-    {#        <tbody> #}
-    {#            <tr> #}
-    {#                <th>Id</th> #}
-    {#                <td>{{ team.id }}</td> #}
-    {#            </tr> #}
-    {#            <tr> #}
-    {#                <th>Level</th> #}
-    {#                <td>{{ team.level }}</td> #}
-    {#            </tr> #}
-    {#            <tr> #}
-    {#                <th>Photo</th> #}
-    {#                <td>{{ team.photo }}</td> #}
-    {#            </tr> #}
-    {#        </tbody> #}
-    {#    </table> #}
-
-    {#    <a href="{{ path('app_team_index') }}">back to list</a> #}
-
-    {#    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a> #}
-
-    {#    {{ include('team/_delete_form.html.twig') }} #}
 {% endblock %}
