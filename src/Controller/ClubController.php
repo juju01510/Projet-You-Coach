@@ -85,8 +85,6 @@ class ClubController extends AbstractController
     #[Route('/{id}', name: 'app_club_show', methods: ['GET'])]
     public function show(Club $club, TeamRepository $teamRepository): Response
     {
-
-
         $teams = $teamRepository->findAllTeamsOfClubOrderByCat($club);
 
         return $this->render('club/show.html.twig', [

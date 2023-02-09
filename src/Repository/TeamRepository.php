@@ -50,6 +50,17 @@ class TeamRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+//    public function findAllTeamsOfClubById($id): mixed
+//    {
+//        $query = $this->createQueryBuilder('t');
+//        $query->where('t.club = :id');
+//        $query->setParameter('id', $id);
+//
+//        return $query->getQuery()->getResult();
+//    }
+
+
+
 
 
 //    /**

@@ -31,11 +31,15 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+        $idClub = $this->getUser()->getClub()->getId();
+
         $user = new User();
         $user->setRoles(["ROLE_MANAGER"]);
 
+        $form = $this->createForm(RegistrationFormType::class, $user, [
+            'idClub' => $idClub
+        ]);
 
-        $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

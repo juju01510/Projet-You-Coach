@@ -31,6 +31,8 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $idClub = $options['idClub'];
+
         $builder
             ->add('firstname', TextType::class, [
                 'attr' => [
@@ -63,15 +65,15 @@ class RegistrationFormType extends AbstractType
                     'Manager' => ['class' => 'roles']
                 ]
             ])
-            ->add('team', EntityType::class,[
+            ->add('team', EntityType::class, [
                 'required' => true,
                 'label' => 'Choisir un type',
                 'class' => Team::class,
-//                'query_builder' => function (EntityRepository $er) use ($club) {
-//                    return $er->createQueryBuilder('t')
-//                        ->where('t.club = :club')
-//                        ->setParameter('club', $club);
-//                },
+                'query_builder' => function (EntityRepository $er) use ($idClub) {
+                    return $er->createQueryBuilder('t')
+                        ->where('t.club = :club')
+                        ->setParameter('club', $idClub);
+                },
                 'choice_label' => function ($team) {
                     return $team->getClub()->getName() . ' - ' . $team->getCategory() . ' - ' . $team->getLevel();
                 },
@@ -126,11 +128,11 @@ class RegistrationFormType extends AbstractType
                     return [$rolesString];
                 }
             ));
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
+        $resolver->setRequired(['idClub']);
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
