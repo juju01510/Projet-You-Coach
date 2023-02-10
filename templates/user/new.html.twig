@@ -2,10 +2,35 @@
 
 {% block title %}New User{% endblock %}
 
-{% block body %}
-    <h1>Create new User</h1>
+{% block main %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
 
-    {{ include('user/_form.html.twig') }}
+    <div class="d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="col-lg-10 col-sm-12 block-form box-shadow">
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+            <h1>Inscription</h1>
+
+            {{ form_start(form) }}
+            {{ form_row(form.firstname) }}
+            {{ form_row(form.lastname) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.email, {
+                'attr' : {'placeholder': 'Email'}
+            }) }}
+            {{ form_row(form.roles) }}
+            {{ form_row(form.team) }}
+            {{ form_row(form.plainPassword) }}
+            <div class="d-flex justify-content-between mt-5">
+                {{ form_row(form.agreeTerms, {
+                    label: 'Accepter les conditions'
+                }) }}
+                <button type="submit" class="custom-btn">Inscription</button>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
 {% endblock %}

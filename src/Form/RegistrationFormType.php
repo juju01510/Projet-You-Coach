@@ -31,8 +31,6 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $idClub = $options['idClub'];
-
         $builder
             ->add('firstname', TextType::class, [
                 'attr' => [
@@ -50,34 +48,35 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Téléphone'
                 ],
             ])
-            ->add('roles', ChoiceType::class, [
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-                'choices' => [
-                    'Manager' => 'ROLE_MANAGER',
-                    'Coach' => 'ROLE_COACH',
-                    'Joueur' => 'ROLE_PLAYER',
-                ],
-                'choice_attr' => [
-                    'Joueur' => ['class' => 'roles'],
-                    'Coach' => ['class' => 'roles'],
-                    'Manager' => ['class' => 'roles']
-                ]
-            ])
-            ->add('team', EntityType::class, [
-                'required' => true,
-                'label' => 'Choisir un type',
-                'class' => Team::class,
-                'query_builder' => function (EntityRepository $er) use ($idClub) {
-                    return $er->createQueryBuilder('t')
-                        ->where('t.club = :club')
-                        ->setParameter('club', $idClub);
-                },
-                'choice_label' => function ($team) {
-                    return $team->getClub()->getName() . ' - ' . $team->getCategory() . ' - ' . $team->getLevel();
-                },
-            ])
+//            ->add('roles', ChoiceType::class, [
+//                'required' => true,
+//                'multiple' => false,
+//                'expanded' => false,
+//                'choices' => [
+//                    'Manager' => 'ROLE_MANAGER',
+//                    'Coach' => 'ROLE_COACH',
+//                    'Joueur' => 'ROLE_PLAYER',
+//                ],
+//                'choice_attr' => [
+//                    'Joueur' => ['class' => 'roles'],
+//                    'Coach' => ['class' => 'roles'],
+//                    'Manager' => ['class' => 'roles']
+//                ]
+//            ])
+//            ->add('team', EntityType::class, [
+//                'required' => true,
+//                'label' => 'Choisir un type',
+//                'class' => Team::class,
+//                'query_builder' => function (EntityRepository $er) use ($idClub) {
+//                    return $er->createQueryBuilder('t')
+//                        ->where('t.club = :club')
+//                        ->setParameter('club', $idClub)
+//                        ->orderBy('t.category', 'DESC');
+//                },
+//                'choice_label' => function ($team) {
+//                    return $team->getClub()->getName() . ' - ' . $team->getCategory() . ' - ' . $team->getLevel();
+//                },
+//            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -117,22 +116,21 @@ class RegistrationFormType extends AbstractType
             ]);
 
         // Data transformer
-        $builder->get('roles')
-            ->addModelTransformer(new CallbackTransformer(
-                function ($rolesArray) {
-                    // transform the array to a string
-                    return count($rolesArray) ? $rolesArray[0] : null;
-                },
-                function ($rolesString) {
-                    // transform the string back to an array
-                    return [$rolesString];
-                }
-            ));
+//        $builder->get('roles')
+//            ->addModelTransformer(new CallbackTransformer(
+//                function ($rolesArray) {
+//                    // transform the array to a string
+//                    return count($rolesArray) ? $rolesArray[0] : null;
+//                },
+//                function ($rolesString) {
+//                    // transform the string back to an array
+//                    return [$rolesString];
+//                }
+//            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setRequired(['idClub']);
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
