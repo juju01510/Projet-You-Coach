@@ -6,13 +6,13 @@
 
         <h2 class="card-text">{{ player.firstname }}</h2>
         <h2 class="card-text text-uppercase">{{ player.lastname }}</h2>
-        <p>{{ player.roles ? player.roles|json_encode : '' }}</p>
+        <p>Joueur</p>
         <p>Poste : XXX </p>
         <p>Age : XXX</p>
 
         <div class="row justify-content-evenly">
 
-            <a class="custom-btn-light col-5" href="{{ path('app_user_show', {'id': player.id}) }}">Profile</a>
+            <a class="custom-btn-light col-5" href="{{ path('app_user_show', {'id': player.id}) }}">Profil</a>
 
             {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
                 <a class="custom-btn-light col-5" href="{{ path('app_user_edit', {'id': player.id}) }}">Modifier</a>

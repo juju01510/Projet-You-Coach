@@ -7,6 +7,7 @@ use App\Entity\Team;
 use App\Entity\User;
 use App\Form\TeamType;
 use App\Repository\TeamRepository;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -84,9 +85,15 @@ class TeamController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_team_show', methods: ['GET'])]
-    public function show(Team $team): Response
+    public function show(Team $team, UserRepository $userRepository): Response
     {
+//        $roles = ["ROLE_PLAYER"];
+////        $role = $this->getUser()->getRoles();
+//        $players = $userRepository->findAllPlayers($roles);
+
         return $this->render('team/show.html.twig', [
+//            'players' => $players,
+//            'roles' => $roles,
             'team' => $team,
         ]);
     }

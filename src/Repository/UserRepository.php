@@ -56,6 +56,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
+    public function findAllPlayers($roles): mixed
+    {
+        $query = $this->createQueryBuilder('u');
+//        $query->where('u.team = :team');
+//        $query->setParameter('team', $team);
+        $query->where($query->expr()->in('u.roles', ':roles'));
+        $query->setParameter('roles', $roles);
+
+        return $query->getQuery()->getResult();
+    }
+
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

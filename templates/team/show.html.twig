@@ -4,6 +4,8 @@
 
 {% block main %}
 
+
+
     <div class="d-flex flex-column align-items-center">
         <div class="col-lg-10 col-sm-12 p-2">
             <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>
@@ -22,9 +24,11 @@
 
         <div class="d-flex flex-wrap col-lg-10 col-sm-12">
         {% for player in team.player %}
+            {% if player.roles[0] == "ROLE_PLAYER" %}
                 <div class="col-lg-2 col-sm-12 p-2">
                     {% include('partials/_player_card.html.twig') %}
                 </div>
+            {% endif %}
         {% endfor %}
         </div>
 
