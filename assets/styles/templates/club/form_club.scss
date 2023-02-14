@@ -33,6 +33,10 @@
     }
   }
 
+  .form-select {
+    background-image: url(../../../../public/build/images/téléchargement.svg) !important;
+  }
+
   a {
     text-decoration: none;
   }
@@ -41,6 +45,8 @@
 .col-form-label {
   display: none;
 }
+
+
 
 
 

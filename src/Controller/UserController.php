@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserEditType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
@@ -44,18 +45,18 @@ class UserController extends AbstractController
 
         $user = new User();
 
-        $formUser = $this->createForm(UserType::class, $user, [
+        $form = $this->createForm(UserType::class, $user, [
             'idClub' => $idClub
         ]);
 
-        $formUser->handleRequest($request);
+        $form->handleRequest($request);
 
-        if ($formUser->isSubmitted() && $formUser->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $formUser->get('plainPassword')->getData()
+                    $form->get('plainPassword')->getData()
                 )
             );
 
@@ -82,7 +83,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/new.html.twig', [
-            'form' => $formUser->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -118,15 +119,20 @@ class UserController extends AbstractController
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
-        $idClub = $this->getUser()->getTeam()->getClub()->getId();
+        $id = $request->attributes->get('id');
+        $loggedUser = $this->getUser();
+        $role = $loggedUser->getRoles();
 
-        $form = $this->createForm(UserType::class, $user, [
-            'idClub' => $idClub
+        if (in_array("ROLE_MANAGER", $role)) {
+            $idClub = $loggedUser->getClub()->getId();
+        } elseif (in_array("ROLE_PLAYER", $role) || in_array("ROLE_COACH", $role)) {
+            $idClub = $loggedUser->getTeam()->getClub()->getId();
+        }
+
+        $form = $this->createForm(UserEditType::class, $user, [
+            'idClub' => $idClub,
         ]);
         $form->handleRequest($request);
-
-        $id = $request->attributes->get('id');
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
@@ -145,7 +151,7 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
         }
 
