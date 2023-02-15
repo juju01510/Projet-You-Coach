@@ -21,7 +21,10 @@ class TeamType extends AbstractType
         $builder
             ->add('level', IntegerType::class, [
                 'label' => 'Niveau',
-                'attr' => ['placeholder' => 'Niveau']
+                'attr' => [
+                    'placeholder' => 'Niveau',
+                    'min' => 1
+                ]
             ])
             ->add('photo', FileType::class, [
                 'mapped' => false,
