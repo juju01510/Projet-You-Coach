@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+
+    <div class="d-flex justify-content-center">
+        <div class="cool col-lg-10 col-sm-12">
+            <h1>Entrainements</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+{#                    <th>Id</th>#}
+                    <th>Date</th>
+                    <th>Lieu</th>
+                    <th>Club</th>
+                    <th>Catégorie</th>
+                    <th>Informations</th>
+                    <th>Joueurs présents</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for training in team.trainings %}
+                    <tr>
+{#                        <td>{{ training.id }}</td>#}
+                        <td>{{ training.date ? training.date|date('d-m-Y H:i:s') : '' }}</td>
+                        <td>{{ training.place }}</td>
+                        <td>{{ training.team.club.name }}</td>
+                        <td>{{ training.team.category }} {{ training.team.level }}</td>
+                        <td>{{ training.info }}</td>
+                        <td>XX</td>
+                        <td>
+                            <div class="d-flex justify-content-evenly">
+                                <a class="custom-btn-light" href="{{ path('app_training_show', {'id': training.id}) }}">Voir</a>
+                                <a class="custom-btn-light" href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {#    <a href="{{ path('app_club_new') }}">Create new</a> #}
+            {#                {% for training in team.trainings %} #}
+
+            {#                        <p>{{ training.id }}</p> #}
+            {#                        <p>{{ training.date ? training.date|date('Y-m-d H:i:s') : '' }}</p> #}
+            {#                        <p>{{ training.place }}</p> #}
+            {#                        <p>{{ training.team.club.name }}</p> #}
+            {#                        <p>{{ training.team.category }}</p> #}
+            {#                        <p>{{ training.team.level }}</p> #}
+            {#                        <p>{{ training.team.id }}</p> #}
+            {#                        <p>{{ training.info }}</p> #}
+            {#                        <div> #}
+            {#                            <a class="dark-color" href="{{ path('app_training_show', {'id': training.id}) }}">show</a> #}
+            {#                            <a class="dark-color" href="{{ path('app_training_edit', {'id': training.id}) }}">edit</a> #}
+            {#                        </div> #}
+
+            {#                        {% for player in training.team.player %} #}
+            {#                            <p> #}
+            {#                                {{ player.firstname }}  {{ player.lastname }} #}
+            {#                            </p> #}
+            {#                        {% endfor %} #}
+
+            {#                {% endfor %} #}
+
+            <a class="custom-btn-light" href="{{ path('app_training_new') }}">Ajouter un entrainement</a>
+        </div>
+    </div>
+
+{% endblock %}
+

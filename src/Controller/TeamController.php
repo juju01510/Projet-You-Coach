@@ -87,13 +87,15 @@ class TeamController extends AbstractController
     #[Route('/{id}', name: 'app_team_show', methods: ['GET'])]
     public function show(Team $team, UserRepository $userRepository): Response
     {
-//        $roles = ["ROLE_PLAYER"];
-////        $role = $this->getUser()->getRoles();
-//        $players = $userRepository->findAllPlayers($roles);
-
         return $this->render('team/show.html.twig', [
-//            'players' => $players,
-//            'roles' => $roles,
+            'team' => $team,
+        ]);
+    }
+
+    #[Route('/{id}/trainings', name: 'app_team_trainings', methods: ['GET'])]
+    public function trainings(Team $team, UserRepository $userRepository): Response
+    {
+        return $this->render('team/trainings.html.twig', [
             'team' => $team,
         ]);
     }

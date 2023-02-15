@@ -17,6 +17,7 @@
                     <th>Club</th>
                     <th>Category</th>
                     <th>Level</th>
+                    <th>TeamId</th>
                     <th>Info</th>
                 </tr>
                 </thead>
@@ -30,6 +31,7 @@
                         <td>{{ training.team.club.name }}</td>
                         <td>{{ training.team.category }}</td>
                         <td>{{ training.team.level }}</td>
+                        <td>{{ training.team.id }}</td>
                         <td>{{ training.info }}</td>
                         <td>
                             <a class="dark-color" href="{{ path('app_training_show', {'id': training.id}) }}">show</a>

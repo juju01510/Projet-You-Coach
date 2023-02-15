@@ -1,0 +1,22 @@
+<div class="card-club card-team-back d-flex box-shadow">
+
+    <a class="link" href="{{ path('app_training_show', {'id': training.id}) }}"></a>
+
+    <p>{{ training.id }}</p>
+    <p>{{ training.date ? training.date|date('Y-m-d H:i:s') : '' }}</p>
+    <p>{{ training.place }}</p>
+    <p>{{ training.team.club.name }}</p>
+    <p>{{ training.team.category }}</p>
+    <p>{{ training.team.level }}</p>
+    <p>{{ training.team.id }}</p>
+    <p>{{ training.info }}</p>
+        <a class="dark-color" href="{{ path('app_training_edit', {'id': training.id}) }}">edit</a>
+
+    {% for player in training.team.player %}
+        <p>
+            {{ player.firstname }}  {{ player.lastname }}
+        </p>
+    {% endfor %}
+
+
+</div>
