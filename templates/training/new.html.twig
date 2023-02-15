@@ -2,10 +2,18 @@
 
 {% block title %}New Training{% endblock %}
 
-{% block body %}
-    <h1>Create new Training</h1>
+{% block main %}
+    <div class="d-flex flex-column justify-content-center align-items-center flex-grow-1">
+        <div class="col-lg-10 col-sm-12">
+            <a href="{{ path('app_training_index') }}">Retour</a>
+        </div>
+        <div class="col-lg-10 col-sm-12 mt-1 block-form box-shadow">
+            <h1>Nouvel entrainement</h1>
+            {{ include('training/_form.html.twig') }}
+        </div>
+    </div>
 
-    {{ include('training/_form.html.twig') }}
-
-    <a href="{{ path('app_training_index') }}">back to list</a>
 {% endblock %}
+
+
+

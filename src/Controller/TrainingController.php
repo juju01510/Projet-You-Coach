@@ -25,7 +25,9 @@ class TrainingController extends AbstractController
     public function new(Request $request, TrainingRepository $trainingRepository): Response
     {
         $training = new Training();
-        $form = $this->createForm(TrainingType::class, $training);
+        $form = $this->createForm(TrainingType::class, $training, [
+            'idClub' => $this->getUser()->getClub()->getId(),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
