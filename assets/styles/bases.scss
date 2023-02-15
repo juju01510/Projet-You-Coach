@@ -22,7 +22,7 @@ main {
 }
 
 a {
-  color: white !important;
+  color: var(--light) !important;
   text-decoration: none;
 }
 
@@ -72,6 +72,10 @@ a {
 
 .box-shadow {
   box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8);
+}
+
+.dark-color {
+  color: var(--dark) !important;
 }
 
 .custom-btn {
@@ -132,11 +136,6 @@ a {
   opacity: 1 !important;
 }
 
-
-$primary-color: #111d4a;
-$secondary-color: rgb(194, 202, 232);
-$tertiary-color: #8380b6;
-$quaternary-color: #8789c0;
 //Scrollbar----------------------------------------------------------------
 
 /* Works on Firefox */

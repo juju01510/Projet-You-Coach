@@ -10,12 +10,12 @@
         <p>Poste : XXX </p>
         <p>Age : XXX</p>
 
-        <div class="row justify-content-evenly">
+        <div class="d-flex justify-content-between">
 
-            <a class="custom-btn-light col-5" href="{{ path('app_user_show', {'id': player.id}) }}">Profil</a>
+            <a class="custom-btn-light" href="{{ path('app_user_show', {'id': player.id}) }}">Profil</a>
 
             {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
-                <a class="custom-btn-light col-5" href="{{ path('app_user_edit', {'id': player.id}) }}">Modifier</a>
+                <a class="custom-btn-light" href="{{ path('app_user_edit', {'id': player.id}) }}">Modifier</a>
             {% endif %}
 
         </div>
