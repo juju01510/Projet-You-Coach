@@ -11,5 +11,15 @@ import './styles/app.scss';
 // You can specify which plugins you need
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
+
 // start the Stimulus application
 import './bootstrap';
+import './scripts/datepicker'
+import datepicker from 'js-datepicker';
+
+
+
+
+
+
+

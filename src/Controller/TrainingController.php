@@ -21,8 +21,8 @@ class TrainingController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_training_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TrainingRepository $trainingRepository): Response
+    #[Route('/new/{id}', name: 'app_training_new', methods: ['GET', 'POST'])]
+    public function new($id, Request $request, TrainingRepository $trainingRepository): Response
     {
         $training = new Training();
         $form = $this->createForm(TrainingType::class, $training, [
@@ -39,6 +39,7 @@ class TrainingController extends AbstractController
         return $this->renderForm('training/new.html.twig', [
             'training' => $training,
             'form' => $form,
+            'teamId' => $id,
         ]);
     }
 

@@ -13,7 +13,7 @@
             <table class="table">
                 <thead>
                 <tr>
-{#                    <th>Id</th>#}
+                    {#                    <th>Id</th> #}
                     <th>Date</th>
                     <th>Lieu</th>
                     <th>Club</th>
@@ -25,11 +25,11 @@
                 <tbody>
                 {% for training in team.trainings %}
                     <tr>
-{#                        <td>{{ training.id }}</td>#}
-                        <td>{{ training.date ? training.date|date('d-m-Y H:i:s') : '' }}</td>
+                        {#                        <td>{{ training.id }}</td> #}
+                        <td>{{ training.date ? training.date|date('D d M Y à H:i:s') : '' }}</td>
                         <td>{{ training.place }}</td>
                         <td>{{ training.team.club.name }}</td>
-                        <td>{{ training.team.category }} {{ training.team.level }}</td>
+                        <td>{{ training.team.category }} - Équipe {{ training.team.level }}</td>
                         <td>{{ training.info }}</td>
                         <td>XX</td>
                         <td>
@@ -71,7 +71,8 @@
 
             {#                {% endfor %} #}
 
-            <a class="custom-btn-light" href="{{ path('app_training_new') }}">Ajouter un entrainement</a>
+            <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un
+                entrainement</a>
         </div>
     </div>
 
