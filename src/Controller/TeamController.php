@@ -8,6 +8,8 @@ use App\Entity\User;
 use App\Form\TeamType;
 use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
+use DateTime;
+use DateTimeZone;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -95,7 +97,15 @@ class TeamController extends AbstractController
     #[Route('/{id}/trainings', name: 'app_team_trainings', methods: ['GET'])]
     public function trainings(Team $team, UserRepository $userRepository): Response
     {
+//        date_default_timezone_set('Europe/Paris');
+//        $dateTime = new DateTime('now');
+//        $dateTime->setTimezone(new DateTimeZone('Europe/Paris'));
+//        $dateTime->getTimezone();
+
+//        dump($dateTime);
+
         return $this->render('team/trainings.html.twig', [
+//            'test' => $dateTime,
             'team' => $team,
         ]);
     }

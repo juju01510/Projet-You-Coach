@@ -33,7 +33,7 @@ class TrainingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $trainingRepository->save($training, true);
 
-            return $this->redirectToRoute('app_training_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_team_trainings', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('training/new.html.twig', [
