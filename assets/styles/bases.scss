@@ -134,6 +134,7 @@ td {
 }
 
 .new-custom-btn {
+  display: inline-block;
   color: var(--dark) !important;
   font-family: var(--main-font-bold);
   background-color: var(--tertiary-color);
@@ -142,6 +143,11 @@ td {
   border-radius: var(--border-radius);
   bottom: 1em;
   right: 1em;
+}
+
+.new-custom-btn-big {
+  @extend .new-custom-btn;
+  width: 100%;
 }
 
 .new-custom-btn:hover {

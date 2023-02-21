@@ -4,14 +4,14 @@
         <p>CLUB</p>
     </div>
     <div class="card-image col-4 d-flex justify-content-center">
-        <img src="{{ asset('uploads/images/' ~ club.logo) }}" alt="Logo du club">
+        <img class="img50" src="{{ asset('uploads/images/' ~ club.logo) }}" alt="Logo du club">
     </div>
     <div class="card-content col-8">
 
         <h2 class="card-text">{{ club.name }}</h2>
-        <p>Téléphone : {{ club.phone }}</p>
-        <p>Adresse : {{ club.adress }}</p>
-        <p>Nombre d'équipes : {{ club.team | length }}</p>
+        <p><span class="fw-bolder">Téléphone : </span>{{ club.phone }}</p>
+        <p><span class="fw-bolder">Adresse : </span> {{ club.adress }}</p>
+        <p><span class="fw-bolder">Nombres d'équipes : </span> {{ club.team | length }}</p>
 
         {% if is_granted('ROLE_MANAGER') %}
         <p>

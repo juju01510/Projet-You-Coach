@@ -5,19 +5,23 @@
         <p>ÉQUIPE</p>
     </div>
     <div class="card-image col-4 d-flex justify-content-center align-items-center">
-        <img src="{{ asset('uploads/images/' ~ team.photo) }}" alt="Logo du club">
+        <img class="img50" src="{{ asset('uploads/images/' ~ team.photo) }}" alt="Logo du club">
     </div>
     <div class="card-content col-8">
 
         <h2 class="card-text">{{ team.category }} - {{ team.level }}</h2>
         {% for coach in team.player %}
             {% if coach.roles[0] == "ROLE_COACH" %}
-                <p class="z-1 position-relative"><a class="dark-color" href="{{ path('app_user_show', {'id': coach.id}) }}">Coach
+                <p class="z-1 position-relative d-inline-block"><a class="dark-color"
+                                                                   href="{{ path('app_user_show', {'id': coach.id}) }}"><span
+                                class="fw-bolder">Coach</span>
                         : {{ coach.firstname }} {{ coach.lastname }} </a></p>
             {% endif %}
         {% endfor %}
 
-        <p>Nombre de joueurs : {{ team.player | length - 1 }}</p>
+        {% if team.player.count > 0 %}
+            <p><span class="fw-bolder">Nombre de joueurs :</span> {{ team.player | length - 1 }}</p>
+        {% endif %}
 
         {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
             <p>

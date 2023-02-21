@@ -4,13 +4,16 @@
 
   .card-image {
 
-    img {
-      height: 200px
+    .img100 {
+      //height: 200px;
+      width: 100%;
+    }
+    .img50 {
+      width: 50%;
     }
   }
 
   .card-content {
-
     a {
       text-decoration: none;
     }
@@ -22,10 +25,11 @@
 }
 .card-club > .link {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
+  //top: 0;
+  //right: 0;
+  //bottom: 0;
+  //left: 0;
 }
 
 .card-club-back {

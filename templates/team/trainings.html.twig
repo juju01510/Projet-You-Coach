@@ -6,8 +6,9 @@
 
 {% block main %}
 
-    <div class="d-flex justify-content-center">
-        <div class="cool col-lg-10 col-sm-12">
+    {% set message = '<td>foo</td>' %}
+
+        <div class="cool">
             <h1>Entrainements</h1>
 
             {#            {{ test ? test|date('D d M Y') : '' }} #}
@@ -30,6 +31,7 @@
                 {% for training in team.trainings %}
                     <tr>
                         {#                        <td>{{ training.id }}</td> #}
+                        {#                        {{ message|trans|raw }} #}
                         <td>{{ training.date ? training.date|date('D d M Y') : '' }}</td>
                         {#                        <td>{{ training.date ? training.date|localizeddate('none', 'none', null, 'fr', {'date_format': 'D d M Y'}) : '' }}</td> #}
                         {#                        <td>{{ training.date ? training.date|date('D d M Y', date_default_timezone_get()) : '' }}</td> #}
@@ -42,7 +44,8 @@
                         <td>
                             <div class="d-flex justify-content-end">
                                 <a class="custom-btn-light" href="{{ path('app_training_show', {'id': training.id}) }}">Voir</a>
-                                <a class="custom-btn-light ms-3" href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a>
+                                <a class="custom-btn-light ms-3"
+                                   href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a>
                             </div>
                         </td>
                     </tr>
@@ -78,9 +81,9 @@
 
             {#                {% endfor %} #}
 
-                <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un entrainement</a>
+            <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un
+                entrainement</a>
         </div>
-    </div>
 
 {% endblock %}
 
