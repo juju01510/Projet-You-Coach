@@ -1,0 +1,43 @@
+<div class="card-club card-team-back box-shadow">
+
+    <a class="link" href="{{ path('app_team_show', {'id': team.id}) }}"></a>
+    <div class="card-title-team">
+        <p>ÉQUIPE</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card-image">
+                <img class="img50" src="{{ asset('uploads/images/' ~ team.photo) }}" alt="Photo de l'équipe">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card-content">
+                <h2 class="card-text">{{ team.category }} - {{ team.level }}</h2>
+                {% for coach in team.player %}
+                    {% if coach.roles[0] == "ROLE_COACH" %}
+                        <p class="z-1 position-relative d-inline-block"><a class="dark-color"
+                                                                           href="{{ path('app_user_show', {'id': coach.id}) }}"><span
+                                        class="fw-bolder">Coach</span>
+                                : {{ coach.firstname }} {{ coach.lastname }} </a></p>
+                    {% endif %}
+                {% endfor %}
+
+                {% if team.player.count > 0 %}
+                    <p><span class="fw-bolder">Nombre de joueurs :</span> {{ team.player | length - 1 }}</p>
+                {% endif %}
+
+                {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
+                    <p class="d-none d-sm-block">
+                        <a class="z-2 position-absolute custom-btn-light"
+                           href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
+                    </p>
+                    <p class="d-block d-sm-none mx-3 mt-5">
+                        <a class="z-2 position-relative custom-btn-light"
+                           href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

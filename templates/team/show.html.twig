@@ -3,24 +3,26 @@
 {% block title %}Team{% endblock %}
 
 {% block main %}
-
-    <div class="mb-2">
+    <div class="row mb-2">
         <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>
-        {% include('partials/_team_card.html.twig') %}
+        <div class="col-12">
+            {% include('partials/_team_cardTest.html.twig') %}
+        </div>
     </div>
+
 
     <div class="row justify-content-between mb-md-5 mb-1">
         {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
-            <div class="col-lg-4 col-sm-12">
+            <div class="col-lg-4 col-sm-12 my-1 col-lg-my-0">
                 <a class="new-custom-btn-big  text-center box-shadow"
                    href="{{ path('app_user_new') }}">Ajouter un joueur</a>
             </div>
         {% endif %}
-        <div class="col-lg-4 col-sm-12">
+        <div class="col-lg-4 col-sm-12 my-1 col-lg-my-0">
             <a class="new-custom-btn-big text-center box-shadow"
                href="#">Matchs</a>
         </div>
-        <div class="col-lg-4 col-sm-12">
+        <div class="col-lg-4 col-sm-12 my-1 col-lg-my-0">
             <a class="new-custom-btn-big text-center box-shadow"
                href="{{ path("app_team_trainings", {'id': team.id}) }}">Entrainements</a>
         </div>
@@ -29,7 +31,7 @@
     <div class="row">
         {% for player in team.player %}
             {% if player.roles[0] == "ROLE_PLAYER" %}
-                <div class="col-md-3 mb-2">
+                <div class="col-xxl-2 col-xl-3 col-md-4 mb-3">
                     {% include('partials/_player_card.html.twig') %}
                 </div>
             {% endif %}

@@ -23,6 +23,7 @@
 
     .dropdown-menu {
       background-color: var(--quaternary-color);
+      backdrop-filter: blur(4px);
 
       p{
         margin: 0;
@@ -40,27 +41,13 @@
         background-color: transparent;
       }
     }
-
-    .nav-link {
-      //font-family: var(--main-font-bold);
-    }
   }
 }
 
 
 
 
-//@media (max-width: 992px) {
-//
-//  .logo {
-//    width: 300px !important;
-//  }
-//
-//  .nav-link {
-//    font-size: 2em !important;
-//    margin: 0 !important;
-//  }
-//}
+
 
 
 

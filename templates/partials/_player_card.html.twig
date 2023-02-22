@@ -1,24 +1,32 @@
-<div class="card-club card-team-back d-flex flex-column box-shadow">
+<div class="card-club card-team-back d-flex flex-column box-shadow h-100">
+    <a class="link"
+       href="{{ path('app_user_show', {'id': player.id}) }}"></a>
     <div class="card-image d-flex justify-content-center mb-3">
-        <img class="img100" src="{{ asset('uploads/images/' ~ team.photo) }}" alt="Logo du club">
+        <img class="img100" src="{{ asset('build/images/abstract-user-flat-4.svg') }}" alt="Logo du club">
     </div>
     <div class="card-content">
 
-        <h2 class="card-text">{{ player.firstname }}</h2>
-        <h2 class="card-text text-uppercase">{{ player.lastname }}</h2>
-        <p class="fw-bolder">JOUEUR</p>
-        <p><span class="fw-bolder">Poste :</span> XXX </p>
-        <p><span class="fw-bolder">Age :</span> XXX</p>
+        <h4 class="card-text text-center">{{ player.firstname }}<br><span
+                    class="text-uppercase">{{ player.lastname }}</span>
+        </h4>
 
-        <div class="row">
-            <div class="col-6">
-                <a class="custom-btn-light d-inline-block w-100 d-flex justify-content-center" href="{{ path('app_user_show', {'id': player.id}) }}">Profil</a>
-            </div>
-            <div class="col-6">
-                {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
-                    <a class="custom-btn-light d-inline-block w-100 d-flex justify-content-center" href="{{ path('app_user_edit', {'id': player.id}) }}">Modifier</a>
-                {% endif %}
-            </div>
+        <div class="d-flex flex-column justify-content-center align-items-center my-2">
+            <p><span class="fw-bolder">Poste :</span> XXX </p>
+            <p><span class="fw-bolder">Age :</span> XXX</p>
         </div>
+
+
+        {#        <div class="row"> #}
+        {#            <div class="col-6"> #}
+        {#                <a class="custom-btn-light d-inline-block w-100 d-flex justify-content-center" #}
+        {#                   href="{{ path('app_user_show', {'id': player.id}) }}">Profil</a> #}
+        {#            </div> #}
+        {#            <div class="col-6"> #}
+        {#                {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %} #}
+        {#                    <a class="custom-btn-light d-inline-block w-100 d-flex justify-content-center" #}
+        {#                       href="{{ path('app_user_edit', {'id': player.id}) }}">Modifier</a> #}
+        {#                {% endif %} #}
+        {#            </div> #}
+        {#        </div> #}
     </div>
 </div>

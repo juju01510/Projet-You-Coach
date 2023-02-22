@@ -1,15 +1,27 @@
 .card-club {
+  backdrop-filter: blur(6px);
   border-radius: var(--border-radius);
   padding: 1em;
 
-  .card-image {
+  p {
+    margin: 0;
+  }
 
-    .img100 {
-      //height: 200px;
-      width: 100%;
-    }
+  .card-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include media-breakpoint-down(sm) {
+    justify-content: start;
+  }
+
     .img50 {
       width: 50%;
+      max-width: 200px;
+    }
+    .img100 {
+      width: 100%;
+      max-width: 200px;
     }
   }
 
@@ -23,13 +35,10 @@
 .card-club {
   position: relative;
 }
+
 .card-club > .link {
   position: absolute;
   inset: 0;
-  //top: 0;
-  //right: 0;
-  //bottom: 0;
-  //left: 0;
 }
 
 .card-club-back {
