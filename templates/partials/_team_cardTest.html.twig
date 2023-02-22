@@ -13,6 +13,7 @@
         </div>
         <div class="col-md-8">
             <div class="card-content">
+
                 <h2 class="card-text">{{ team.category }} - {{ team.level }}</h2>
                 {% for coach in team.player %}
                     {% if coach.roles[0] == "ROLE_COACH" %}
@@ -37,6 +38,7 @@
                            href="{{ path('app_team_edit', {'id': team.id}) }}">Modifier</a>
                     </p>
                 {% endif %}
+
             </div>
         </div>
     </div>
