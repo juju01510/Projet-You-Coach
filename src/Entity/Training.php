@@ -24,6 +24,7 @@ class Training
     private ?string $info = null;
 
     #[ORM\ManyToOne(inversedBy: 'trainings')]
+    #[ORM\JoinColumn (onDelete: 'CASCADE')]
     private ?Team $team = null;
 
     public function getId(): ?int
