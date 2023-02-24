@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
   margin: 0;
-
 }
 
 body {
@@ -35,38 +34,9 @@ a {
   border-radius: 5px;
 }
 
-.card-title-club {
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  p {
-    color: var(--light);
-    font-family: var(--main-font-bold);
-    font-size: 1.3em;
-    padding: 0.5em;;
-    border-bottom: 2px solid var(--light);
-  }
-}
-
-.card-title-team {
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  p {
-    color: var(--dark);
-    font-family: var(--main-font-bold);
-    font-size: 1.3em;
-    padding: 0.5em;
-    border-bottom: 2px solid var(--dark);
-  }
-}
-
 th {
   padding: 0.5em 0 0.5em 0 !important;
   border-bottom: 1px solid var(--dark);
-
 }
 
 td {
@@ -95,69 +65,11 @@ td {
   font-family: var(--main-font-bolder);
 }
 
-.custom-btn {
-  color: var(--light) !important;
-  font-family: var(--main-font-bold);
-  background-color: transparent;
-  padding: 0.5em 1em 0.5em 1em;
-  border: 2px solid var(--light);
-  border-radius: var(--border-radius);
-  bottom: 1em;
-  right: 1em;
-}
+.blur {
 
-.custom-btn:hover {
-  opacity: 0.8;
-}
-
-.custom-btn:active {
-  opacity: 1 !important;
 }
 
 
-.custom-btn-light {
-  color: var(--dark) !important;
-  font-family: var(--main-font-bold);
-  background-color: transparent;
-  padding: 0.5em 1em 0.5em 1em;
-  border: 2px solid var(--dark);
-  border-radius: var(--border-radius);
-  bottom: 1em;
-  right: 1em;
-}
-
-.custom-btn-light:hover {
-  opacity: 0.8;
-}
-
-.custom-btn-light:active {
-  opacity: 1 !important;
-}
-
-.new-custom-btn {
-  display: inline-block;
-  color: var(--dark) !important;
-  font-family: var(--main-font-bold);
-  background-color: var(--tertiary-color);
-  padding: 0.5em 1em 0.5em 1em;
-  border-bottom: 2px solid var(--dark);
-  border-radius: var(--border-radius);
-  bottom: 1em;
-  right: 1em;
-}
-
-.new-custom-btn-big {
-  @extend .new-custom-btn;
-  width: 100%;
-}
-
-.new-custom-btn:hover {
-  opacity: 0.8;
-}
-
-.new-custom-btn:active {
-  opacity: 1 !important;
-}
 
 //Scrollbar----------------------------------------------------------------
 

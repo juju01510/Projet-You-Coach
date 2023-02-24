@@ -1,0 +1,63 @@
+.custom-btn {
+  color: var(--light) !important;
+  font-family: var(--main-font-bold);
+  background-color: transparent;
+  padding: 0.5em 1em 0.5em 1em;
+  border: 2px solid var(--light);
+  border-radius: var(--border-radius);
+  bottom: 1em;
+  right: 1em;
+}
+
+.custom-btn:hover {
+  opacity: 0.8;
+}
+
+.custom-btn:active {
+  opacity: 1 !important;
+}
+
+
+.custom-btn-light {
+  color: var(--dark) !important;
+  font-family: var(--main-font-bold);
+  background-color: transparent;
+  padding: 0.5em 1em 0.5em 1em;
+  border: 2px solid var(--dark);
+  border-radius: var(--border-radius);
+  bottom: 1em;
+  right: 1em;
+}
+
+.custom-btn-light:hover {
+  opacity: 0.8;
+}
+
+.custom-btn-light:active {
+  opacity: 1 !important;
+}
+
+.new-custom-btn {
+  display: inline-block;
+  color: var(--dark) !important;
+  font-family: var(--main-font-bold);
+  background-color: var(--tertiary-color);
+  padding: 0.5em 1em 0.5em 1em;
+  border-bottom: 2px solid var(--dark);
+  border-radius: var(--border-radius);
+  bottom: 1em;
+  right: 1em;
+}
+
+.new-custom-btn-big {
+  @extend .new-custom-btn;
+  width: 100%;
+}
+
+.new-custom-btn:hover {
+  opacity: 0.8;
+}
+
+.new-custom-btn:active {
+  opacity: 1 !important;
+}

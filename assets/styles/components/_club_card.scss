@@ -1,5 +1,5 @@
 .card-club {
-  backdrop-filter: blur(6px);
+  backdrop-filter: var(--blur);
   border-radius: var(--border-radius);
   padding: 1em;
 
@@ -49,4 +49,32 @@
 .card-team-back {
   color: var(--dark);
   background-color: var(--tertiary-color)
+}
+
+.card-title-club {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  p {
+    color: var(--light);
+    font-family: var(--main-font-bold);
+    font-size: 1.3em;
+    padding: 0.5em;;
+    border-bottom: 2px solid var(--light);
+  }
+}
+
+.card-title-team {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  p {
+    color: var(--dark);
+    font-family: var(--main-font-bold);
+    font-size: 1.3em;
+    padding: 0.5em;
+    border-bottom: 2px solid var(--dark);
+  }
 }
