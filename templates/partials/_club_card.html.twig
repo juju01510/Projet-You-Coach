@@ -14,10 +14,10 @@
         <div class="col-md-8">
             <div class="card-content">
 
-                <h2 class="card-text">{{ club.name }}</h2>
-                <p><span class="fw-bolder">Téléphone : </span>{{ club.phone }}</p>
-                <p><span class="fw-bolder">Adresse : </span> {{ club.adress }}</p>
-                <p><span class="fw-bolder">Nombres d'équipes : </span> {{ club.team | length }}</p>
+                <h2 class="card-text bold">{{ club.name }}</h2>
+                <p><span class="bold">Téléphone : </span>{{ club.phone }}</p>
+                <p><span class="bold">Adresse : </span> {{ club.adress }}</p>
+                <p><span class="bold">Nombres d'équipes : </span> {{ club.team | length }}</p>
 
                 {% if is_granted('ROLE_MANAGER') %}
                     <p class="d-none d-sm-block">

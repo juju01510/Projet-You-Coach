@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserEditType;
 use App\Form\UserType;
+use App\Repository\ClubRepository;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use App\Security\LoginAuthenticator;
@@ -13,6 +14,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -149,12 +151,26 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
+    public function delete(Request $request, User $user, UserRepository $userRepository, ClubRepository $clubRepository): Response
     {
+
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+
+            if ($user->getClub() !=null) {
+                $club = $user->getClub();
+                $clubRepository->remove($club, true);
+            }
+
+            $currentUser = $this->getUser();
+            if ($currentUser === $user)
+            {
+//                $session = $this->get('session');
+                $session = new Session();
+                $session->invalidate();
+            }
+
             $userRepository->remove($user, true);
         }
-
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }

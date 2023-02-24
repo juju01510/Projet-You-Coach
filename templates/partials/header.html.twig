@@ -2,7 +2,7 @@
     <nav class="container navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{{ path('app_home') }}">
-                <img class="logo" src="{{ asset('build/images/logo.png') }}">
+                <img class="logo" src="{{ asset('build/images/logo.png') }}" alt="Logo You Coach">
             </a>
             <ul class="navbar-nav">
                 {% if is_granted('ROLE_MANAGER') %}

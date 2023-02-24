@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+
 }
 
 body {
@@ -31,10 +33,6 @@ a {
   padding: 1em;
   background-color: var(--tertiary-color);
   border-radius: 5px;
-
-  p {
-    margin: 0;
-  }
 }
 
 .card-title-club {
@@ -46,10 +44,7 @@ a {
     color: var(--light);
     font-family: var(--main-font-bold);
     font-size: 1.3em;
-    padding: 0.5em;
-    //border-radius: 0 5px 0 5px;
-    //border: 2px solid var(--tertiary-color);
-    //border-left: 2px solid var(--tertiary-color);
+    padding: 0.5em;;
     border-bottom: 2px solid var(--light);
   }
 }
@@ -64,9 +59,6 @@ a {
     font-family: var(--main-font-bold);
     font-size: 1.3em;
     padding: 0.5em;
-    //border-radius: 0 5px 0 5px;
-    //border: 2px solid var(--quaternary-color);
-    //border-left: 2px solid var(--quaternary-color);
     border-bottom: 2px solid var(--dark);
   }
 }
@@ -93,6 +85,14 @@ td {
 
 .dark-color {
   color: var(--dark) !important;
+}
+
+.bold {
+  font-family: var(--main-font-bold);
+}
+
+.bolder {
+  font-family: var(--main-font-bolder);
 }
 
 .custom-btn {
