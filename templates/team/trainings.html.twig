@@ -8,82 +8,66 @@
 
     {% set message = '<td>foo</td>' %}
 
-        <div class="cool">
-            <h1>Entrainements</h1>
+    <div class="cool">
+        <h1>Entrainements</h1>
 
-            {#            {{ test ? test|date('D d M Y') : '' }} #}
+        {#            {{ test ? test|date('D d M Y') : '' }} #}
 
-            <table class="table">
-                <thead>
+        <table class="table">
+            <thead>
+            <tr>
+                {#                    <th>Id</th> #}
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Lieu</th>
+                <th>Club</th>
+                <th>Catégorie</th>
+                {#                    <th>Informations</th> #}
+                {#                    <th>Joueurs présents</th> #}
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for training in team.trainings %}
                 <tr>
-                    {#                    <th>Id</th> #}
-                    <th>Date</th>
-                    <th>Heure</th>
-                    <th>Lieu</th>
-                    <th>Club</th>
-                    <th>Catégorie</th>
-                    <th>Informations</th>
-                    <th>Joueurs présents</th>
-                    <th></th>
+                    {#                        <td>{{ training.id }}</td> #}
+                    {#                        {{ message|trans|raw }} #}
+                    <td>{{ training.date ? training.date|date('d / m / y') : '' }}</td>
+                    {#                        <td>{{ training.date ? training.date|localizeddate('none', 'none', null, 'fr', {'date_format': 'D d M Y'}) : '' }}</td> #}
+                    {#                        <td>{{ training.date ? training.date|date('D d M Y', date_default_timezone_get()) : '' }}</td> #}
+                    <td>{{ training.date ? training.date|date('H:i') : '' }}</td>
+                    <td>{{ training.place }}</td>
+                    <td>{{ training.team.club.name }}</td>
+                    <td>{{ training.team.category }} - Équipe {{ training.team.level }}</td>
+                    {#                        <td>{{ training.info }}</td> #}
+                    {#                        <td>XX</td> #}
+                    <td>
+                        <div class="d-flex justify-content-end">
+                            <a class="custom-btn-light"
+                               href="{{ path('app_training_show', {'id': training.id}) }}">Voir</a>
+                            <a class="custom-btn-light ms-3"
+                               href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a>
+                        </div>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                {% for training in team.trainings %}
-                    <tr>
-                        {#                        <td>{{ training.id }}</td> #}
-                        {#                        {{ message|trans|raw }} #}
-                        <td>{{ training.date ? training.date|date('D d M Y') : '' }}</td>
-                        {#                        <td>{{ training.date ? training.date|localizeddate('none', 'none', null, 'fr', {'date_format': 'D d M Y'}) : '' }}</td> #}
-                        {#                        <td>{{ training.date ? training.date|date('D d M Y', date_default_timezone_get()) : '' }}</td> #}
-                        <td>{{ training.date ? training.date|date('H:i') : '' }}</td>
-                        <td>{{ training.place }}</td>
-                        <td>{{ training.team.club.name }}</td>
-                        <td>{{ training.team.category }} - Équipe {{ training.team.level }}</td>
-                        <td>{{ training.info }}</td>
-                        <td>XX</td>
-                        <td>
-                            <div class="d-flex justify-content-end">
-                                <a class="custom-btn-light" href="{{ path('app_training_show', {'id': training.id}) }}">Voir</a>
-                                <a class="custom-btn-light ms-3"
-                                   href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a>
-                            </div>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="6">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-            {#    <a href="{{ path('app_club_new') }}">Create new</a> #}
-            {#                {% for training in team.trainings %} #}
 
-            {#                        <p>{{ training.id }}</p> #}
-            {#                        <p>{{ training.date ? training.date|date('Y-m-d H:i:s') : '' }}</p> #}
-            {#                        <p>{{ training.place }}</p> #}
-            {#                        <p>{{ training.team.club.name }}</p> #}
-            {#                        <p>{{ training.team.category }}</p> #}
-            {#                        <p>{{ training.team.level }}</p> #}
-            {#                        <p>{{ training.team.id }}</p> #}
-            {#                        <p>{{ training.info }}</p> #}
-            {#                        <div> #}
-            {#                            <a class="dark-color" href="{{ path('app_training_show', {'id': training.id}) }}">show</a> #}
-            {#                            <a class="dark-color" href="{{ path('app_training_edit', {'id': training.id}) }}">edit</a> #}
-            {#                        </div> #}
-
-            {#                        {% for player in training.team.player %} #}
-            {#                            <p> #}
-            {#                                {{ player.firstname }}  {{ player.lastname }} #}
-            {#                            </p> #}
-            {#                        {% endfor %} #}
-
-            {#                {% endfor %} #}
-
+        {% if is_granted('ROLE_MANAGER') %}
             <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un
                 entrainement</a>
-        </div>
+        {% elseif is_granted('ROLE_COACH') %}
+            <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un
+                entrainement</a>
+        {% endif %}
+
+    </div>
 
 {% endblock %}
 

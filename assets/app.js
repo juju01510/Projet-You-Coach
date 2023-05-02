@@ -14,8 +14,8 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 
 // start the Stimulus application
 import './bootstrap';
-import './scripts/datepicker'
-import datepicker from 'js-datepicker';
+// import './scripts/datepicker'
+// import datepicker from 'js-datepicker';
 
 
 
