@@ -3,39 +3,41 @@
 {% block title %}Team{% endblock %}
 
 {% block main %}
+    <div class="container mt-3">
 
-    <div class="row mb-2">
-        <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>
-        <div class="col-12">
-            {% include('partials/_team_cardTest.html.twig') %}
-        </div>
-    </div>
-
-    <div class="row mb-md-5 mb-1">
-        {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
-            <div class="col-lg-4 col-sm-12 my-1 col-lg-my-0">
-                <a class="new-custom-btn-big text-center box-shadow blur"
-                   href="{{ path('app_user_new') }}">Ajouter un joueur</a>
+        <div class="row mb-2">
+            <a href="{{ path('app_club_show', {'id': team.club.id}) }}">Retour</a>
+            <div class="col-12">
+                {% include('partials/_team_cardTest.html.twig') %}
             </div>
-        {% endif %}
-        <div class="{% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %} col-lg-4 {% else %} col-lg-6 {% endif %} col-sm-12 my-1 col-lg-my-0">
-            <a class="new-custom-btn-big text-center box-shadow blur"
-               href="#">Matchs</a>
         </div>
-        <div class="{% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %} col-lg-4 {% else %} col-lg-6 {% endif %} col-sm-12 my-1 col-lg-my-0">
-            <a class="new-custom-btn-big text-center box-shadow blur"
-               href="{{ path("app_team_trainings", {'id': team.id}) }}">Entrainements</a>
-        </div>
-    </div>
 
-    <div class="row">
-        {% for player in team.player %}
-            {% if player.roles[0] == "ROLE_PLAYER" %}
-                <div class="col-xxl-2 col-xl-3 col-md-4 mb-3">
-                    {% include('partials/_player_card.html.twig') %}
+        <div class="row mb-md-5 mb-1">
+            {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
+                <div class="col-lg-4 col-sm-12 my-1 col-lg-my-0">
+                    <a class="new-custom-btn-big text-center box-shadow blur"
+                       href="{{ path('app_user_new') }}">Ajouter un joueur</a>
                 </div>
             {% endif %}
-        {% endfor %}
+            <div class="{% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %} col-lg-4 {% else %} col-lg-6 {% endif %} col-sm-12 my-1 col-lg-my-0">
+                <a class="new-custom-btn-big text-center box-shadow blur"
+                   href="#">Matchs</a>
+            </div>
+            <div class="{% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %} col-lg-4 {% else %} col-lg-6 {% endif %} col-sm-12 my-1 col-lg-my-0">
+                <a class="new-custom-btn-big text-center box-shadow blur"
+                   href="{{ path("app_team_trainings", {'id': team.id}) }}">Entrainements</a>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for player in team.player %}
+                {% if player.roles[0] == "ROLE_PLAYER" %}
+                    <div class="col-xxl-2 col-xl-3 col-md-4 mb-3">
+                        {% include('partials/_player_card.html.twig') %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

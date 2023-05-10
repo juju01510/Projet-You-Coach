@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -52,9 +53,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'coach', targetEntity: Team::class)]
     private Collection $teams;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $birth = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $post = null;
+
+    #[ORM\OneToMany(mappedBy: 'player', targetEntity: TrainingPresence::class)]
+    private Collection $trainingPresences;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
+        $this->trainingPresences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -233,6 +244,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($team->getCoach() === $this) {
                 $team->setCoach(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getBirth(): ?\DateTimeInterface
+    {
+        return $this->birth;
+    }
+
+    public function setBirth(?\DateTimeInterface $birth_date): self
+    {
+        $this->birth = $birth_date;
+
+        return $this;
+    }
+
+    public function getPost(): ?string
+    {
+        return $this->post;
+    }
+
+    public function setPost(?string $post): self
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TrainingPresence>
+     */
+    public function getTrainingPresences(): Collection
+    {
+        return $this->trainingPresences;
+    }
+
+    public function addTrainingPresence(TrainingPresence $trainingPresence): self
+    {
+        if (!$this->trainingPresences->contains($trainingPresence)) {
+            $this->trainingPresences->add($trainingPresence);
+            $trainingPresence->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrainingPresence(TrainingPresence $trainingPresence): self
+    {
+        if ($this->trainingPresences->removeElement($trainingPresence)) {
+            // set the owning side to null (unless already changed)
+            if ($trainingPresence->getPlayer() === $this) {
+                $trainingPresence->setPlayer(null);
             }
         }
 

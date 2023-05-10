@@ -1,9 +1,10 @@
 .custom-btn {
-  color: var(--light) !important;
+  color: var(--dark) !important;
   font-family: var(--main-font-bold);
-  background-color: transparent;
+  //background-color: transparent;
+  background-color: var(--light);
   padding: 0.5em 1em 0.5em 1em;
-  border: 2px solid var(--light);
+  //border: 2px solid var(--light);
   border-radius: var(--border-radius);
   bottom: 1em;
   right: 1em;

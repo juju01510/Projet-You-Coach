@@ -40,11 +40,11 @@ class TeamRepository extends ServiceEntityRepository
         }
     }
 
-    public function findAllTeamsOfClubOrderByCat($value): mixed
+    public function findAllTeamsOfClubOrderByCat($club): mixed
     {
         $query = $this->createQueryBuilder('t');
         $query->where('t.club = :val');
-        $query->setParameter('val', $value);
+        $query->setParameter('val', $club);
         $query->orderBy('t.category', 'DESC');
 
         return $query->getQuery()->getResult();

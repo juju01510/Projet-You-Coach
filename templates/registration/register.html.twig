@@ -4,40 +4,29 @@
 
 {% block main %}
 
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <div class="container d-flex justify-content-center align-items-center flex-grow-1">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
 
-    <div class="d-flex justify-content-center align-items-center flex-grow-1">
-        <div class="col-lg-10 col-sm-12 block-form box-shadow">
-            <h1>Inscription</h1>
-            {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.firstname) }}
-            {{ form_row(registrationForm.lastname) }}
-            {{ form_row(registrationForm.phone) }}
-            {{ form_row(registrationForm.email, {
-                'attr' : {'placeholder': 'Email'}
-            }) }}
-
-{#            {% if is_granted('ROLE_MANAGER') %}#}
-{#                {{ form_row(registrationForm.roles) }}#}
-{#                {{ form_row(registrationForm.team) }}#}
-{#            {% else %}#}
-{#                {{ form_row(registrationForm.roles, {#}
-{#                    'attr' : {'class': 'd-none'}#}
-{#                }) }}#}
-{#                {{ form_row(registrationForm.team, {#}
-{#                    'attr' : {'class': 'd-none'}#}
-{#                }) }}#}
-{#            {% endif %}#}
-
-            {{ form_row(registrationForm.plainPassword) }}
-            <div class="d-flex justify-content-between mt-5">
-                {{ form_row(registrationForm.agreeTerms, {
-                    label: 'Accepter les conditions'
+        <div class="d-flex justify-content-center align-items-center flex-grow-1">
+            <div class="col-lg-10 col-sm-12 block-form box-shadow">
+                <h1>Inscription</h1>
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.firstname) }}
+                {{ form_row(registrationForm.lastname) }}
+                {{ form_row(registrationForm.phone) }}
+                {{ form_row(registrationForm.email, {
+                    'attr' : {'placeholder': 'Email'}
                 }) }}
-                <button type="submit" class="custom-btn">Inscription</button>
-                {{ form_end(registrationForm) }}
+                {{ form_row(registrationForm.plainPassword) }}
+                <div class="d-flex justify-content-between mt-5">
+                    {{ form_row(registrationForm.agreeTerms, {
+                        label: 'Accepter les conditions'
+                    }) }}
+                    <button type="submit" class="custom-btn">Inscription</button>
+                    {{ form_end(registrationForm) }}
+                </div>
             </div>
         </div>
     </div>

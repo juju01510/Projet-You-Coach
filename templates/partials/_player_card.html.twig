@@ -11,22 +11,13 @@
         </h4>
 
         <div class="d-flex flex-column justify-content-center align-items-center my-2">
-            <p><span class="fw-bolder">Poste :</span> XXX </p>
-            <p><span class="fw-bolder">Age :</span> XXX</p>
+            {% if player.post %}
+            <p><span class="fw-bolder">Poste :</span> {{ player.post }}</p>
+            {% endif %}
+            {% set age = date().diff(date(player.birth)).y %}
+            {% if player.birth %}
+            <p><span class="fw-bolder">Age :</span> {{ age }}</p>
+            {% endif %}
         </div>
-
-
-        {#        <div class="row"> #}
-        {#            <div class="col-6"> #}
-        {#                <a class="custom-btn-light d-inline-block w-100 d-flex justify-content-center" #}
-        {#                   href="{{ path('app_user_show', {'id': player.id}) }}">Profil</a> #}
-        {#            </div> #}
-        {#            <div class="col-6"> #}
-        {#                {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %} #}
-        {#                    <a class="custom-btn-light d-inline-block w-100 d-flex justify-content-center" #}
-        {#                       href="{{ path('app_user_edit', {'id': player.id}) }}">Modifier</a> #}
-        {#                {% endif %} #}
-        {#            </div> #}
-        {#        </div> #}
     </div>
 </div>

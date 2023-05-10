@@ -47,8 +47,11 @@ final class TeamFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'category' => CategoryFactory::new(),
-            'level' => self::faker()->randomNumber(),
+            'category' => CategoryFactory::random(),
+            'level' => self::faker()->randomDigitNotNull(),
+            'photo' =>  'Logo-OL-645a4580def82.svg',
+            'club' => ClubFactory::random(),
+            'coach' => CoachFactory::random(),
         ];
     }
 

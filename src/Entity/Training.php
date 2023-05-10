@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrainingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,6 +28,14 @@ class Training
     #[ORM\ManyToOne(inversedBy: 'trainings')]
     #[ORM\JoinColumn (onDelete: 'CASCADE')]
     private ?Team $team = null;
+
+    #[ORM\OneToMany(mappedBy: 'training', targetEntity: TrainingPresence::class)]
+    private Collection $trainingPresences;
+
+    public function __construct()
+    {
+        $this->trainingPresences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +86,36 @@ class Training
     public function setTeam(?Team $team): self
     {
         $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TrainingPresence>
+     */
+    public function getTrainingPresences(): Collection
+    {
+        return $this->trainingPresences;
+    }
+
+    public function addTrainingPresence(TrainingPresence $trainingPresence): self
+    {
+        if (!$this->trainingPresences->contains($trainingPresence)) {
+            $this->trainingPresences->add($trainingPresence);
+            $trainingPresence->setTraining($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrainingPresence(TrainingPresence $trainingPresence): self
+    {
+        if ($this->trainingPresences->removeElement($trainingPresence)) {
+            // set the owning side to null (unless already changed)
+            if ($trainingPresence->getTraining() === $this) {
+                $trainingPresence->setTraining(null);
+            }
+        }
 
         return $this;
     }

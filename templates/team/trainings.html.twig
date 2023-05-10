@@ -6,67 +6,50 @@
 
 {% block main %}
 
-    {% set message = '<td>foo</td>' %}
-
-    <div class="cool">
-        <h1>Entrainements</h1>
-
-        {#            {{ test ? test|date('D d M Y') : '' }} #}
-
-        <table class="table">
-            <thead>
-            <tr>
-                {#                    <th>Id</th> #}
-                <th>Date</th>
-                <th>Heure</th>
-                <th>Lieu</th>
-                <th>Club</th>
-                <th>Catégorie</th>
-                {#                    <th>Informations</th> #}
-                {#                    <th>Joueurs présents</th> #}
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for training in team.trainings %}
+    <div class="container mt-3">
+        <div class="cool">
+            <h1>Entrainements</h1>
+            <table class="table">
+                <thead>
                 <tr>
-                    {#                        <td>{{ training.id }}</td> #}
-                    {#                        {{ message|trans|raw }} #}
-                    <td>{{ training.date ? training.date|date('d / m / y') : '' }}</td>
-                    {#                        <td>{{ training.date ? training.date|localizeddate('none', 'none', null, 'fr', {'date_format': 'D d M Y'}) : '' }}</td> #}
-                    {#                        <td>{{ training.date ? training.date|date('D d M Y', date_default_timezone_get()) : '' }}</td> #}
-                    <td>{{ training.date ? training.date|date('H:i') : '' }}</td>
-                    <td>{{ training.place }}</td>
-                    <td>{{ training.team.club.name }}</td>
-                    <td>{{ training.team.category }} - Équipe {{ training.team.level }}</td>
-                    {#                        <td>{{ training.info }}</td> #}
-                    {#                        <td>XX</td> #}
-                    <td>
-                        <div class="d-flex justify-content-end">
-                            <a class="custom-btn-light"
-                               href="{{ path('app_training_show', {'id': training.id}) }}">Voir</a>
-                            <a class="custom-btn-light ms-3"
-                               href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a>
-                        </div>
-                    </td>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Lieu</th>
+                    <th>Catégorie</th>
+                    <th></th>
                 </tr>
-            {% else %}
-                <tr>
-                    <td colspan="6">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for training in team.trainings %}
+                    <tr>
+                        <td>{{ training.date ? training.date|date('d / m / y') : '' }}</td>
+                        <td>{{ training.date ? training.date|date('H:i') : '' }}</td>
+                        <td>{{ training.place }}</td>
+                        <td>{{ training.team.category }} - Équipe {{ training.team.level }}</td>
+                        <td>
+                            <div class="d-flex justify-content-end">
+                                <a class="custom-btn-light"
+                                   href="{{ path('app_training_show', {'id': training.id}) }}">Voir</a>
+{#                                <a class="custom-btn-light ms-3"#}
+{#                                   href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a>#}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
 
-        {% if is_granted('ROLE_MANAGER') %}
-            <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un
-                entrainement</a>
-        {% elseif is_granted('ROLE_COACH') %}
-            <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un
-                entrainement</a>
-        {% endif %}
+            {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH')%}
+                <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un
+                    entrainement</a>
+            {% endif %}
 
+        </div>
     </div>
 
 {% endblock %}

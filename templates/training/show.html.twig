@@ -4,8 +4,15 @@
 
 {% block main %}
 
-    <div class="cool">
+    <div class="container cool">
         <h1>Entrainement</h1>
+
+        {% if is_granted('ROLE_PLAYER') %}
+        {{ form_start(formPresense) }}
+        {{ form_widget(formPresense) }}
+        <button type="submit" class="custom-btn">Envoyer</button>
+        {{ form_end(formPresense) }}
+        {% endif %}
 
         <table class="table">
             <tbody>
@@ -22,14 +29,15 @@
                 <td>{{ training.place }}</td>
             </tr>
             <tr>
-                <th>Info</th>
+                <th>Infos</th>
                 <td>{{ training.info }}</td>
             </tr>
             <tr>
-                <th>Joueurs</th>
+                <th>Joueurs présents</th>
+                <th></th>
             </tr>
 
-            {% for player in training.team.player %}
+            {% for player in players %}
                 <tr>
                     <th></th>
                     <td>{{ player.firstname }} {{ player.lastname }}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Training;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -56,15 +57,28 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
-    public function findAllPlayers($roles): mixed
+    public function findPresentPlayersByTraining($training): mixed
     {
-        $query = $this->createQueryBuilder('u');
-//        $query->where('u.team = :team');
-//        $query->setParameter('team', $team);
-        $query->where($query->expr()->in('u.roles', ':roles'));
-        $query->setParameter('roles', $roles);
+        $entityManager = $this->getEntityManager();
 
-        return $query->getQuery()->getResult();
+        $query = $entityManager->createQuery('
+        SELECT u
+        FROM App\Entity\User u
+        JOIN App\Entity\TrainingPresence tp WITH tp.player = u
+        WHERE tp.training = :training
+        AND tp.is_present = true
+    ');
+
+        $query->setParameter('training', $training);
+
+        return $query->getResult();
+
+
+//        $query = $this->createQueryBuilder('p');
+//        $query->where('p.trainingPresences = :true');
+//        $query->setParameter('true', true);
+//
+//        return $query->getQuery()->getResult();
     }
 
 

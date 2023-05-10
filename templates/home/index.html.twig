@@ -4,33 +4,241 @@
 
 {% block main %}
 
-    {% for message in app.flashes('success') %}
-        <div class="row justify-content-center align-items-center">
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        </div>
-    {% endfor %}
+    <div class="filter-bg">
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="row justify-content-center align-items-center">
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
 
-    <div class="bloc">
-        <div class="d-flex justify-content-center align-items-center bloc-acceuil">
-            <div class="welcome">
-                <div>
-                    <h2 class="text-center">Bienvenue chez You coach !</h2>
-                    <h2 class="text-center my-3 my-sm-5">L'app n°1 pour gérer une équipe ou un club de sport amateur </h2>
-                    <p class="text-center">
-                        Que vous soyez dirigeant de club ou entraîneur, simplifiez l'organisation et la communication
-                        interne de votre groupe de sport amateur.</p>
+            <div class="row bloc">
+                <div class="col-md-6 bloc-acceuil">
+                    <h2 class="">Bienvenue chez YouCoach !</h2>
+                    <h2 class="mb-3">L'app n°1 pour gérer une équipe ou un club de sport amateur </h2>
+                    <p class="">
+                        Que vous soyez dirigeant de club ou entraîneur, simplifiez l'organisation et la
+                        communication
+                        interne de votre groupe de sport amateur.
+                    </p>
+                    {% if not app.user %}
+                        <a class="custom-btn text-center" href="{{ path('app_register') }}">Inscrire mon équipe</a>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 bloc-img">
+                    <img class="w-100" src="{{ asset('build/images/sportengagement-presentation.png') }}"
+                         alt="logo homepage">
                 </div>
             </div>
-            {% if is_granted('ROLE_MANAGER') %}
-                {% if app.user.club %}
-                {% else %}
-                    <a class="d-flex justify-content-center custom-btn w-100 mt-3" href="{{ path('app_club_new') }}">Inscrire mon
-                        club</a>
-                {% endif %}
-            {% endif %}
+            <a href="#next" class="arrow">
+                <img src="{{ asset('build/images/icon-bottom-arrow.svg') }}" alt="flêche de défilement">
+            </a>
         </div>
     </div>
 
+    <div class="bg-white">
+        <section id="next" class="bloc-chiffres">
+            <div class="container-fluid">
+                <h3 class="text-center">En quelques chiffres</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 class="text-center">125 000</h4>
+                        <p class="text-center">Equipes actives</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="text-center">2 500 000</h4>
+                        <p class="text-center">Utilisateurs heureux</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="text-center">10 000 000</h4>
+                        <p class="text-center">Evênements gérés</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid bloc-presentation">
+            <div class="row justify-content-center presentation-equipe">
+                <div class="col-md-5">
+                    <h3>Vous gérez une équipe ?</h3>
+                    <p>Gérer une équipe de sport amateur doit rester un plaisir.
+                        Quel que soit votre type de pratique : en club, en loisir ou entre copains,
+                        YouCoach va vous simplifier la vie et celle de votre équipe.
+                    </p>
+
+                    <a class="d-inline-block" href="#">En savoir plus</a>
+                    <div>
+                        <a class="custom-btn-light text-center d-inline-block" href="{{ path('app_register') }}">Inscrire
+                            mon
+                            équipe
+                        </a>
+                    </div>
+                </div>
+                <div class="row col-md-5">
+                    <img class="w-img" src="{{ asset('build/images/team-presentation.jpg') }}"
+                         alt="présentation du l'équipe">
+                </div>
+            </div>
+            <div class="row justify-content-center presentation-club">
+                <div class="row col-md-5">
+                    <img class="w-img" src="{{ asset('build/images/club-presentation.jpg') }}"
+                         alt="présentation du club">
+                </div>
+                <div class="col-md-5">
+                    <h3>Vous gérez un club ?</h3>
+                    <p>Un club de sport amateur est un formidable vecteur de lien social,
+                        mais cela représente aussi un temps de gestion conséquent :
+                        3 800 heures de bénévolat par an et par club.
+                        Faites gagner l'ensemble du club en efficacité avec YouCoach Club.
+                    </p>
+                    <a class="d-inline-block" href="#">En savoir plus</a>
+                    <div>
+                        <a class="d-inline-block custom-btn-light text-center" href="{{ path('app_register') }}">Inscrire
+                            mon club
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row presentation-confiance">
+                <h3 class="text-center">10 000 clubs nous font confiance</h3>
+                <div class="row col-md-12 d-flex justify-content-center">
+                    <img src="{{ asset('build/images/homepage_club_logo_1.png') }}" alt="logo club">
+                    <img src="{{ asset('build/images/homepage_club_logo_2.png') }}" alt="logo club">
+                    <img src="{{ asset('build/images/homepage_club_logo_3.png') }}" alt="logo club">
+                    <img src="{{ asset('build/images/homepage_club_logo_4.png') }}" alt="logo club">
+                    <img src="{{ asset('build/images/homepage_club_logo_5.png') }}" alt="logo club">
+                    <img src="{{ asset('build/images/homepage_club_logo_6.png') }}" alt="logo club">
+                    <img src="{{ asset('build/images/homepage_club_logo_7.png') }}" alt="logo club">
+                    <img src="{{ asset('build/images/homepage_club_logo_8.png') }}" alt="logo club">
+                </div>
+            </div>
+        </section>
+        <section class="temoignage">
+            <div class="container-fluid">
+                <h3 class="text-center">2 500 000 dirigeants, coachs, joueurs et parents font déjà confiance à
+                    YouCoach</h3>
+                <p class="text-center mb-5">YouCoach permet aux dirigeants et coachs de gagner du temps et aux joueurs
+                    et parents de partager
+                    leurs émotions.
+                </p>
+                <div class="row justify-content-between">
+                    <div class="col-md-4">
+                        <div class="bg-white card-user d-flex flex-column align-items-center">
+                            <img src="{{ asset('build/images/jeremie_moritz.jpg') }}" alt="photo utilisateur">
+                            <p>« YouCoach me fait gagner au moins 2 heures par semaine,
+                                entre les envois de mails automatiques pour savoir si mes gars
+                                sont dispos et la convocation en 1 clic. Et puis, le site est
+                                hyper intuitif. Bravo ! »
+                            </p>
+                            <p>Jeremie Moritz</p>
+                            <p>Coach de la Drink Team (Rugby)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-white card-user d-flex flex-column align-items-center">
+                            <img src="{{ asset('build/images/gwenola_pignol.png') }}" alt="photo utilisateur">
+                            <p>« Il y avait à ce moment-là un vrai besoin de centralisation de l’information
+                                et les dizaines de réponses par mail devenaient très compliquées à gérer.
+                                YouCoach a marqué une étape pour le RCAGR. »
+                            </p>
+                            <p>Gwenola Pignol</p>
+                            <p>Dirigeante du RCAGR (Rugby)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-white card-user d-flex flex-column align-items-center">
+                            <img src="{{ asset('build/images/francois_scheefer.jpg') }}" alt="photo utilisateur">
+                            <p>« YouCoach me fait gagner au moins 2 heures par semaine,
+                                entre les envois de mails automatiques pour savoir si mes gars
+                                sont dispos et la convocation en 1 clic. Et puis, le site est
+                                hyper intuitif. Bravo ! »
+                            </p>
+                            <p>François Scheefer</p>
+                            <p>Coach du RCF Féminines et joueur de l'équipe de France
+                                (Hockey sur gazon)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="recompense">
+            <div class="container-fluid">
+                <div>
+                    <h3>On parle de nous</h3>
+                    <div class="row">
+                        <div class="col-md-4 card-presse">
+                            <img src="{{ asset('build/images/lequipe_logo_2.png') }}" alt="logo">
+                            <p class="quote">« Très pro, l'appli des amateurs ! »</p>
+                        </div>
+                        <div class="col-md-4 card-presse">
+                            <img src="{{ asset('build/images/lefigaro-sport_logo.png') }}" alt="logo">
+                            <p class="quote">« Des joueurs à l'entraineur, tout le monde y trouve son compte »</p>
+                        </div>
+                        <div class="col-md-4 card-presse">
+                            <img src="{{ asset('build/images/lexpress_logo.png') }}" alt="logo">
+                            <p class="quote">« Oubliez les 50 mails echangés avec vos joueurs »</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <h3>Nos prix remportés</h3>
+                    <div class="row">
+                        <div class="col-md-3 card-recompense">
+                            <img src="{{ asset('build/images/sport_numericus.jpg') }}" alt="logo">
+                            <h4>Sport Numericus</h4>
+                            <p>Lauréat du prix de l’innovation sportive numérique en 2013</p>
+                        </div>
+                        <div class="col-md-3 card-recompense">
+                            <img src="{{ asset('build/images/prix-innovation-paris.png') }}" alt="logo">
+                            <h4>Grands Prix de l'Innovation de la Ville de Paris</h4>
+                            <p>Lauréat Contenus <br> Numériques en 2014</p>
+                        </div>
+                        <div class="col-md-3 card-recompense">
+                            <img src="{{ asset('build/images/sport-strategies.png') }}" alt="logo">
+                            <h4>SPORT Stratégies</h4>
+                            <p>Lauréat des SPORT <br> Stratégies Awards en 2017</p>
+                        </div>
+                        <div class="col-md-3 card-recompense">
+                            <img src="{{ asset('build/images/sporsora.jpg') }}" alt="logo">
+                            <h4>Sporsora</h4>
+                            <p>Startups en 2017 <br> Lauréat de la catégorie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sponsoring">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h3>Sponsorisez des clubs amateurs</h3>
+                        <p>SportEngagement est un programme de soutien aux clubs amateurs créé par YouCoach
+                            et destiné à récompenser la pratique sportive et supporter le développement
+                            du sport amateur.
+                        </p>
+                        <a class="d-inline-block custom-btn-light text-center" href="{{ path('app_register') }}">Découvrir</a>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="w-img" src="{{ asset('build/images/sportengagement-presentation.png') }}"
+                             alt="logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {% block footer %}
+        {% include('partials/footer.html.twig') %}
+    {% endblock %}
+
 {% endblock %}
+
+      {#                {% if is_granted('ROLE_MANAGER') %} #}
+            {#                    {% if app.user.club %} #}
+            {#                    {% else %} #}
+            {#                        <a class="d-flex justify-content-center custom-btn w-100 mt-3" href="{{ path('app_club_new') }}">Inscrire mon #}
+            {#                            club</a> #}
+            {#                    {% endif %} #}
+            {#                {% endif %} #}

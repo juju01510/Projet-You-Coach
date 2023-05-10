@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Club;
 use App\Entity\Team;
+use App\Entity\TrainingPresence;
 use App\Entity\User;
 use App\Form\TeamType;
+use App\Form\TrainingPresenceType;
 use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
 use DateTime;
@@ -95,17 +97,13 @@ class TeamController extends AbstractController
     }
 
     #[Route('/{id}/trainings', name: 'app_team_trainings', methods: ['GET'])]
-    public function trainings(Team $team, UserRepository $userRepository): Response
+    public function trainings($id, Team $team, Request $request, UserRepository $userRepository): Response
     {
-//        date_default_timezone_set('Europe/Paris');
-//        $dateTime = new DateTime('now');
-//        $dateTime->setTimezone(new DateTimeZone('Europe/Paris'));
-//        $dateTime->getTimezone();
 
-//        dump($dateTime);
+
+
 
         return $this->render('team/trainings.html.twig', [
-//            'test' => $dateTime,
             'team' => $team,
         ]);
     }
@@ -129,17 +127,6 @@ class TeamController extends AbstractController
             'form' => $form,
         ]);
     }
-
-//    #[Route('/delete/{id}', name: 'app_team_delete', methods: ['POST'])]
-//    public function delete(Request $request, Team $team, TeamRepository $teamRepository): Response
-//    {
-//
-//        if ($this->isCsrfTokenValid('delete' . $team->getId(), $request->request->get('_token'))) {
-//            $teamRepository->remove($team, true);
-//        }
-//
-//        return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
-//    }
 
     #[Route('delete/{id}', name: 'app_team_delete')]
     public function delete($id, TeamRepository $teamRepository): Response

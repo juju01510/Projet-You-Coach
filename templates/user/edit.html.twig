@@ -12,19 +12,11 @@
         </div>
     {% endfor %}
 
-    <div class="d-flex justify-content-center align-items-center flex-grow-1">
+    <div class="container d-flex justify-content-center align-items-center flex-grow-1">
         <div class="col-lg-10 col-sm-12 block-form box-shadow">
             <h1 class="mb-3">Mon compte</h1>
             {{ form_start(form) }}
             {{ form_widget(form) }}
-{#            {{ form_row(form.firstname) }}#}
-{#            {{ form_row(form.lastname) }}#}
-{#            {{ form_row(form.phone) }}#}
-{#            {{ form_row(form.email, {#}
-{#                'attr' : {'placeholder': 'Email'}#}
-{#            }) }}#}
-{#            {{ form_row(form.roles) }}#}
-{#            {{ form_row(form.team) }}#}
             <div class="d-flex justify-content-between mt-5">
                 <button type="submit" class="custom-btn">{{ button_label|default('Valider') }}</button>
                 {{ form_end(form) }}

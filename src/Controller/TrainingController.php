@@ -3,8 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Training;
+use App\Entity\TrainingPresence;
+use App\Form\TrainingPresenceType;
 use App\Form\TrainingType;
+use App\Repository\TrainingPresenceRepository;
 use App\Repository\TrainingRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,10 +48,30 @@ class TrainingController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_training_show', methods: ['GET'])]
-    public function show(Training $training): Response
+    #[Route('/{id}', name: 'app_training_show', methods: ['GET', 'POST'])]
+    public function show(Training $training, UserRepository $userRepository, TrainingPresenceRepository $trainingPresenceRepository, Request $request, EntityManagerInterface $em): Response
     {
+        $teamId = $training->getTeam()->getId();
+
+        $players = $userRepository->findPresentPlayersByTraining($training);
+
+        $presence = new TrainingPresence();
+        $form = $this->createForm(TrainingPresenceType::class, $presence);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $presence->setPlayer($this->getUser());
+            $presence->setTraining($training);
+            $em->persist($presence);
+            $em->flush();
+            return $this->redirectToRoute('app_team_trainings', ['id' => $teamId], Response::HTTP_SEE_OTHER);
+        }
+
+        $this->redirectToRoute('app_home');
+
         return $this->render('training/show.html.twig', [
+            'players' => $players,
+            'formPresense' => $form->createView(),
             'training' => $training,
         ]);
     }

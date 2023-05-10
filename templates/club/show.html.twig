@@ -4,32 +4,33 @@
 
 {% block main %}
 
-    <div class="mb-2">
-        {% include('partials/_club_card.html.twig') %}
+    <div class="container mt-3">
+        <div class="mb-2">
+            {% include('partials/_club_card.html.twig') %}
+        </div>
+
+        {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
+            <div>
+                <a class="new-custom-btn d-flex justify-content-center box-shadow"
+                   href="{{ path('app_team_new', {'id': club.id}) }}">Ajouter
+                    une équipe</a>
+            </div>
+        {% endif %}
+
+        {% if teams %}
+            <div class="mt-3">
+                {% for team in teams %}
+                    <div class="my-2">
+                        {% include('partials/_team_cardTest.html.twig') %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="row justify-content-center align-items-center flex-column cool box-shadow">
+                <p>Votre club ne compte aucune équipe actuellement.</p>
+                <p>Cliquez sur le bouton ci-dessus pour créer votre première équipe !</p>
+            </div>
+        {% endif %}
     </div>
-
-    {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
-        <div>
-            <a class="new-custom-btn d-flex justify-content-center box-shadow"
-               href="{{ path('app_team_new', {'id': club.id}) }}">Ajouter
-                une équipe</a>
-        </div>
-    {% endif %}
-
-    {% if teams %}
-        <div class="mt-3">
-        {% for team in teams %}
-                <div class="my-2">
-                    {% include('partials/_team_cardTest.html.twig') %}
-                </div>
-        {% endfor %}
-        </div>
-    {% else %}
-        <div class="row justify-content-center align-items-center flex-column cool box-shadow">
-            <p>Votre club ne compte aucune équipe actuellement.</p>
-            <p>Cliquez sur le bouton ci-dessus pour créer votre première équipe !</p>
-        </div>
-    {% endif %}
-
 
 {% endblock %}
