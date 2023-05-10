@@ -8,6 +8,7 @@ use App\Form\ClubType;
 use App\Repository\ClubRepository;
 use App\Repository\TeamRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,14 +19,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/club')]
 class ClubController extends AbstractController
 {
-    #[Route('/', name: 'app_club_index', methods: ['GET'])]
-    public function index(ClubRepository $clubRepository): Response
-    {
-        return $this->render('club/index.html.twig', [
-            'clubs' => $clubRepository->findAll(),
-        ]);
-    }
-
+    #[IsGranted('ROLE_MANAGER')]
     #[Route('/new', name: 'app_club_new')]
     public function new(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
@@ -82,6 +76,7 @@ class ClubController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_PLAYER')]
     #[Route('/{id}', name: 'app_club_show', methods: ['GET'])]
     public function show(Club $club, TeamRepository $teamRepository): Response
     {
@@ -93,6 +88,7 @@ class ClubController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_MANAGER')]
     #[Route('/{id}/edit', name: 'app_club_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Club $club, ClubRepository $clubRepository): Response
     {
@@ -111,6 +107,7 @@ class ClubController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_MANAGER')]
     #[Route('/{id}', name: 'app_club_delete', methods: ['POST'])]
     public function delete(Request $request, Club $club, ClubRepository $clubRepository): Response
     {
