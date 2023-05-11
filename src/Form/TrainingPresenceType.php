@@ -16,7 +16,7 @@ class TrainingPresenceType extends AbstractType
     {
         $builder
             ->add('is_present', CheckboxType::class, [
-                'label' => 'Seras-tu là',
+                'label' => 'Seras-tu là ?',
             ])
 //            ->add('player')
 //            ->add('training')

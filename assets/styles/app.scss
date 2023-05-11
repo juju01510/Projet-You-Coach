@@ -1,15 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
 
-@import "assets/styles/bases";
-@import "assets/styles/font";
-@import "assets/styles/variables";
+@import "bases";
+@import "font";
+@import "variables";
 
-@import "assets/styles/templates/acceuil";
-@import "assets/styles/templates/club/form_club";
+@import "templates/acceuil";
 
-@import "assets/styles/components/footer";
-@import "assets/styles/components/header";
-@import "assets/styles/components/club_card";
-@import "assets/styles/components/button";
-
-
+@import "components/footer";
+@import "components/header";
+@import "components/cards";
+@import "components/buttons";
+@import "components/form";
