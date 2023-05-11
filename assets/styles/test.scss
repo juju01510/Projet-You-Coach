@@ -1,0 +1,26 @@
+/* Style de base pour tous les écrans */
+body {
+  font-size: 16px;
+  color: #333333;
+}
+
+/* Style spécifique pour les écrans de petite taille */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Style spécifique pour les écrans de taille moyenne */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Style spécifique pour les écrans larges */
+@media (min-width: 1025px) {
+  body {
+    font-size: 20px;
+  }
+}
