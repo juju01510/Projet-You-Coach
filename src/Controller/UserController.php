@@ -43,9 +43,11 @@ class UserController extends AbstractController
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
-
-
-        $idClub = $this->getUser()->getTeam()->getClub()->getId();
+        if ($this->getUser()->getRoles() == ['ROLE_COACH']) {
+            $idClub = $this->getUser()->getTeam()->getClub()->getId();
+        } elseif ($this->getUser()->getRoles() == ['ROLE_MANAGER']) {
+            $idClub = $this->getUser()->getClub()->getId();
+        }
 
         $user = new User();
 
@@ -67,7 +69,6 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('mailer@you-coach.com', 'You coach'))
@@ -75,13 +76,7 @@ class UserController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
 
-//            return $userAuthenticator->authenticateUser(
-//                $user,
-//                $authenticator,
-//                $request
-//            );
             $this->addFlash('success', "Le compte a été créé avec succès! Confirmer l'adresse mail afin de pouvoir se connecter.");
             return $this->redirectToRoute('app_home');
         }
