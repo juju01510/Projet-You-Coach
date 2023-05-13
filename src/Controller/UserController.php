@@ -43,7 +43,9 @@ class UserController extends AbstractController
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
-        $idClub = $this->getUser()->getClub()->getId();
+
+
+        $idClub = $this->getUser()->getTeam()->getClub()->getId();
 
         $user = new User();
 

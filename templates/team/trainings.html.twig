@@ -7,7 +7,7 @@
 {% block main %}
 
     <div class="container mt-3">
-        <div class="cool">
+        <div class="trainings">
             <h1>Entrainements</h1>
             <table class="table">
                 <thead>
@@ -15,7 +15,7 @@
                     <th>Date</th>
                     <th>Heure</th>
                     <th>Lieu</th>
-                    <th>Catégorie</th>
+                    {#                    <th>Catégorie</th> #}
                     <th></th>
                 </tr>
                 </thead>
@@ -25,13 +25,13 @@
                         <td>{{ training.date ? training.date|date('d / m / y') : '' }}</td>
                         <td>{{ training.date ? training.date|date('H:i') : '' }}</td>
                         <td>{{ training.place }}</td>
-                        <td>{{ training.team.category }} - Équipe {{ training.team.level }}</td>
+                        {#                        <td>{{ training.team.category }} - Équipe {{ training.team.level }}</td> #}
                         <td>
                             <div class="d-flex justify-content-end">
                                 <a class="custom-btn-light"
                                    href="{{ path('app_training_show', {'id': training.id}) }}">Voir</a>
-{#                                <a class="custom-btn-light ms-3"#}
-{#                                   href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a>#}
+                                {#                                <a class="custom-btn-light ms-3" #}
+                                {#                                   href="{{ path('app_training_edit', {'id': training.id}) }}">Modifier</a> #}
                             </div>
                         </td>
                     </tr>
@@ -44,7 +44,7 @@
             </table>
 
 
-            {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH')%}
+            {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
                 <a class="custom-btn-light" href="{{ path('app_training_new', {'id' : team.id}) }}">Ajouter un
                     entrainement</a>
             {% endif %}

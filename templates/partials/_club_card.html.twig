@@ -15,6 +15,7 @@
             <div class="card-content">
 
                 <h2 class="card-text bold">{{ club.name }}</h2>
+                <p><span class="bold">Président : </span>{{ club.manager.firstname }} {{ club.manager.lastname }}</p>
                 <p><span class="bold">Téléphone : </span>{{ club.phone }}</p>
                 <p><span class="bold">Adresse : </span> {{ club.adress }}</p>
                 <p><span class="bold">Nombres d'équipes : </span> {{ club.team | length }}</p>

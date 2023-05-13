@@ -3,45 +3,46 @@
 {% block title %}Training{% endblock %}
 
 {% block main %}
+    <div class="container mt-3">
+        <div class="training">
+            <h1>Entrainement</h1>
 
-    <div class="container cool">
-        <h1>Entrainement</h1>
+            {% if app.user.team %}
+                {{ form_start(formPresense) }}
+                {{ form_widget(formPresense) }}
+                <button type="submit" class="custom-btn">Envoyer</button>
+                {{ form_end(formPresense) }}
+            {% endif %}
 
-        {% if app.user.team %}
-        {{ form_start(formPresense) }}
-        {{ form_widget(formPresense) }}
-        <button type="submit" class="custom-btn">Envoyer</button>
-        {{ form_end(formPresense) }}
-        {% endif %}
-
-        <table class="table">
-            <tbody>
-            <tr>
-                <th>Date</th>
-                <td>{{ training.date ? training.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Place</th>
-                <td>{{ training.place }}</td>
-            </tr>
-            <tr>
-                <th>Infos</th>
-                <td>{{ training.info }}</td>
-            </tr>
-            <tr>
-                <th>Joueurs présents</th>
-                <th></th>
-            </tr>
-
-            {% for player in players %}
+            <table class="table">
+                <tbody>
                 <tr>
-                    <th></th>
-                    <td>{{ player.firstname }} {{ player.lastname }}</td>
+                    <th>Date</th>
+                    <td>{{ training.date ? training.date|date('Y-m-d H:i:s') : '' }}</td>
                 </tr>
-            {% endfor %}
+                <tr>
+                    <th>Place</th>
+                    <td>{{ training.place }}</td>
+                </tr>
+                <tr>
+                    <th>Infos</th>
+                    <td>{{ training.info }}</td>
+                </tr>
+                <tr>
+                    <th>Joueurs présents</th>
+                    <th></th>
+                </tr>
 
-            </tbody>
-        </table>
+                {% for player in players %}
+                    <tr>
+                        <th></th>
+                        <td>{{ player.firstname }} {{ player.lastname }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
     </div>
 
 {% endblock %}

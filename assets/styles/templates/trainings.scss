@@ -1,0 +1,19 @@
+.trainings, .training, .player-show {
+  padding: 1em;
+  background-color: var(--tertiary-color);
+  border-radius: 5px;
+  @include media-breakpoint-down(sm) {
+    font-size: 0.8em;
+  }
+  th {
+    padding: 0.5em 0 0.5em 0 !important;
+    border-bottom: 1px solid var(--dark);
+  }
+
+  td {
+    vertical-align: middle;
+    border-bottom: 1px solid var(--dark);
+    padding: 0.5em 0 0.5em 0 !important;
+  }
+}
+
