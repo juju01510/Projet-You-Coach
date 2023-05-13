@@ -161,7 +161,6 @@ class UserController extends AbstractController
             $currentUser = $this->getUser();
             if ($currentUser === $user)
             {
-//                $session = $this->get('session');
                 $session = new Session();
                 $session->invalidate();
             }

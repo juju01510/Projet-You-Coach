@@ -9,6 +9,14 @@
   transition: all cubic-bezier(0.22,0.61,0.36,1) .3s;
 }
 
+.mobile-menu {
+  margin: 0 !important;
+}
+
+.nav-bg-color {
+  background-color: rgb(2, 11, 39);
+}
+
 nav {
   background-color: var(--quaternary-color);
   box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8);
@@ -25,7 +33,6 @@ nav {
     @include media-breakpoint-down(md) {
       padding: 0;
     }
-    //width: 1320px;
 
     .menu-burger {
       display: none;
@@ -57,7 +64,6 @@ nav {
         left: 0;
         position: absolute;
         z-index: 1000;
-        //background-color: #030E2F;
         background-color: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(8px);
         width: 100%;
@@ -91,78 +97,3 @@ nav {
     }
   }
 }
-
-.mobile-menu {
- margin: 0 !important;
-}
-
-
-.z-100 {
-  z-index: 100;
-}
-
-.nav-bg-color {
-  background-color: rgb(2, 11, 39);
-}
-
-//
-//.main-header {
-//  display: flex;
-//  align-items: center;
-//  height: 10vh;
-//  transition: all cubic-bezier(0.22,0.61,0.36,1) .3s;
-//  @include media-breakpoint-down(sm) {
-//    height: auto;
-//  }
-//
-//  .logo {
-//    width: 90px;
-//  }
-//
-//  .custom-toggler.navbar-toggler {
-//    border-color: white;
-//
-//    .navbar-toggler-icon {
-//      width: 5em;
-//      height: 5em;
-//      background-image: url(
-//      "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-//    }
-//  }
-//
-//  .navbar-nav {
-//    align-items: center;
-//
-//    .dropdown-menu {
-//      background-color: var(--quaternary-color);
-//      backdrop-filter: blur(4px);
-//
-//      p {
-//        margin: 0;
-//      }
-//
-//      .dropdown-item {
-//        color: var(--light) !important;
-//      }
-//
-//      .dropdown-item:hover {
-//        background-color: transparent;
-//      }
-//
-//      .dropdown-item:active {
-//        background-color: transparent;
-//      }
-//    }
-//  }
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//

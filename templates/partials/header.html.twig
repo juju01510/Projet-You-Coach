@@ -1,4 +1,4 @@
-<header class="main-header" id="nav">
+<header id="nav">
     <nav class="container">
         <div class="container">
             <a class="" href="{{ path('app_home') }}">
@@ -38,23 +38,6 @@
                         <ul class="dropdown-menu">
                             <li class="border-bottom">
                                 <p class="dropdown-item">JOUEUR</p>
-                            </li>
-                            <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id' : app.user.id}) }}">Mon
-                                    compte</a></li>
-                            <li><a class="dropdown-item"
-                                   href="{{ path('app_club_show', {'id' : app.user.team.club.id}) }}">Mon club</a></li>
-                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
-                        </ul>
-                    </li>
-                {% elseif is_granted('ROLE_COACH') %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            {{ app.user.firstname }} {{ app.user.lastname }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="border-bottom">
-                                <p class="dropdown-item">COACH</p>
                             </li>
                             <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id' : app.user.id}) }}">Mon
                                     compte</a></li>
