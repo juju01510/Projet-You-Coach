@@ -49,7 +49,7 @@ class TrainingController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_training_show', methods: ['GET', 'POST'])]
-    public function show(Training $training, UserRepository $userRepository, TrainingPresenceRepository $trainingPresenceRepository, Request $request, EntityManagerInterface $em): Response
+    public function show(Training $training, UserRepository $userRepository, Request $request, EntityManagerInterface $em): Response
     {
         $teamId = $training->getTeam()->getId();
 

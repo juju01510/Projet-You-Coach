@@ -38,7 +38,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -57,14 +56,7 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
-
-//            return $userAuthenticator->authenticateUser(
-//                $user,
-//                $authenticator,
-//                $request
-//            );
-            $this->addFlash('success', "Le compte a été créé avec succès! Confirmer l'adresse mail afin de pouvoir se connecter.");
+            $this->addFlash('success', "Le compte a été créé avec succès ! En attente de la confirmation de l'adresse mail.");
             return $this->redirectToRoute('app_home');
         }
 

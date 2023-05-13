@@ -21,9 +21,12 @@
                             </li>
 
                         {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link custom-btn" href="{{ path('app_club_new') }}">Inscrire mon club</a>
-                            </li>
+                            {% if app.user.verified %}
+                                <li class="nav-item">
+                                    <a class="nav-link custom-btn" href="{{ path('app_club_new') }}">Inscrire mon
+                                        club</a>
+                                </li>
+                            {% endif %}
                         {% endif %}
 
                         <li class="nav-item">
@@ -36,10 +39,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_user_edit', {'id' : app.user.id}) }}">Mon compte</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_club_show', {'id' : app.user.team.club.id}) }}">Mon
-                                club</a>
-                        </li>
+                        {% if app.user.verified %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_club_show', {'id' : app.user.team.club.id}) }}">Mon
+                                    club</a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item">
                             <a class=nav-link" href="{{ path('app_logout') }}">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>

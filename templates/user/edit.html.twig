@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}Modifier profile{% endblock %}
 
 {% block main %}
 
     {% for message in app.flashes('success') %}
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="col-lg-10 col-sm-12 alert alert-success">
+        <div class="container mt-3">
+            <div class="alert alert-success">
                 {{ message }}
             </div>
         </div>
     {% endfor %}
 
     <div class="container d-flex justify-content-center align-items-center flex-grow-1">
-        <div class="col-lg-10 col-sm-12 block-form box-shadow">
+        <div class="col-lg-10 block-form box-shadow">
             <h1 class="mb-3">Mon compte</h1>
             {{ form_start(form) }}
             {{ form_widget(form) }}

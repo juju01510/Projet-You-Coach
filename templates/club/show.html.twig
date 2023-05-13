@@ -9,7 +9,7 @@
             {% include('partials/_club_card.html.twig') %}
         </div>
 
-        {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_COACH') %}
+        {% if is_granted('ROLE_COACH') %}
             <div>
                 <a class="new-custom-btn d-flex justify-content-center box-shadow"
                    href="{{ path('app_team_new', {'id': club.id}) }}">Ajouter
@@ -26,7 +26,7 @@
                 {% endfor %}
             </div>
         {% else %}
-            <div class="row justify-content-center align-items-center flex-column cool box-shadow">
+            <div class="add-team box-shadow">
                 <p>Votre club ne compte aucune équipe actuellement.</p>
                 <p>Cliquez sur le bouton ci-dessus pour créer votre première équipe !</p>
             </div>

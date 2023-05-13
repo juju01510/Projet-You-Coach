@@ -7,8 +7,8 @@
     <div class="filter-bg">
         <div class="container">
             {% for message in app.flashes('success') %}
-                <div class="row justify-content-center align-items-center">
-                    <div class="alert alert-success">
+                <div class="container mt-5">
+                    <div class="alert alert-success mt-5">
                         {{ message }}
                     </div>
                 </div>
@@ -234,11 +234,3 @@
     {% endblock %}
 
 {% endblock %}
-
-      {#                {% if is_granted('ROLE_MANAGER') %} #}
-            {#                    {% if app.user.club %} #}
-            {#                    {% else %} #}
-            {#                        <a class="d-flex justify-content-center custom-btn w-100 mt-3" href="{{ path('app_club_new') }}">Inscrire mon #}
-            {#                            club</a> #}
-            {#                    {% endif %} #}
-            {#                {% endif %} #}
