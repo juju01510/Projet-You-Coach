@@ -10,7 +10,6 @@
   }
 
   .bloc-acceuil {
-    //flex-grow: 1;
     height: 100%;
     justify-content: center;
     display: flex;
@@ -36,12 +35,11 @@
   }
 
   .bloc-img {
-    //flex-grow: 1;
     height: 100%;
     display: flex;
     align-items: center;
     @include media-breakpoint-down(md) {
-      display: none;
+      margin-top: 3rem;
     }
   }
 }
