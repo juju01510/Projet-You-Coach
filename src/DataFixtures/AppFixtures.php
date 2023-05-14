@@ -23,9 +23,6 @@ class AppFixtures extends Fixture
         TeamFactory::createMany(5);
         PlayerFactory::createMany(50);
         CoachFactory::createMany(10);
-
-//        SportFactory::createOne();
-//        TrainingFactory::createOne();
         $manager->flush();
     }
 }
