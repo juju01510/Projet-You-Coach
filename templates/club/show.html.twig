@@ -11,7 +11,7 @@
 
         {% if is_granted('ROLE_COACH') %}
             <div>
-                <a class="new-custom-btn d-flex justify-content-center box-shadow"
+                <a class="new-custom-btn text-center w-100 box-shadow"
                    href="{{ path('app_team_new', {'id': club.id}) }}">Ajouter
                     une équipe</a>
             </div>
