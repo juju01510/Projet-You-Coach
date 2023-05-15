@@ -59,10 +59,6 @@ class TeamRepository extends ServiceEntityRepository
 //        return $query->getQuery()->getResult();
 //    }
 
-
-
-
-
 //    /**
 //     * @return Team[] Returns an array of Team objects
 //     */

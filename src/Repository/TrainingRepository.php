@@ -39,19 +39,29 @@ class TrainingRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllTrainingsOfteamOrderByDate($team): mixed
+    {
+        $query = $this->createQueryBuilder('t');
+        $query->where('t.team = :val');
+        $query->setParameter('val', $team);
+        $query->orderBy('t.date', 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Training[] Returns an array of Training objects
 //     */
-    public function findTrainingByTeamId($teamId): array
-    {
-        return $this->createQueryBuilder('tr')
-            ->where('tr.team.id = :val')
-            ->setParameter('val', $teamId)
+//    public function findTrainingByTeamId($teamId): array
+//    {
+//        return $this->createQueryBuilder('tr')
+//            ->where('tr.team.id = :val')
+//            ->setParameter('val', $teamId)
 //            ->orderBy('tr.date', 'DESC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 
 //    public function findOneBySomeField($value): ?Training
 //    {

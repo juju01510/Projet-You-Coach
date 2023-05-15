@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\TeamType;
 use App\Form\TrainingPresenceType;
 use App\Repository\TeamRepository;
+use App\Repository\TrainingRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use DateTimeZone;
@@ -97,13 +98,12 @@ class TeamController extends AbstractController
     }
 
     #[Route('/{id}/trainings', name: 'app_team_trainings', methods: ['GET'])]
-    public function trainings($id, Team $team, Request $request, UserRepository $userRepository): Response
+    public function trainings($id, Team $team, Request $request, UserRepository $userRepository, TrainingRepository $trainingRepository): Response
     {
-
-
-
+        $trainings = $trainingRepository->findAllTrainingsOfteamOrderByDate($team);
 
         return $this->render('team/trainings.html.twig', [
+            'trainings' => $trainings,
             'team' => $team,
         ]);
     }

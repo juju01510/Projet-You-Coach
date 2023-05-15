@@ -57,45 +57,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
-    public function findPresentPlayersByTraining($training): mixed
+    public function findPresentPlayersByTraining($value): array
     {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery('
-        SELECT u
-        FROM App\Entity\User u
-        JOIN App\Entity\TrainingPresence tp WITH tp.player = u
-        WHERE tp.training = :training
-        AND tp.is_present = true
-    ');
-
-        $query->setParameter('training', $training);
-
-        return $query->getResult();
-
-
-//        $query = $this->createQueryBuilder('p');
-//        $query->where('p.trainingPresences = :true');
-//        $query->setParameter('true', true);
-//
-//        return $query->getQuery()->getResult();
+        return $this->createQueryBuilder('u')
+            ->join('u.trainingPresences', 'tp')
+            ->andWhere('tp.training = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
     }
-
-
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
 //    public function findOneBySomeField($value): ?User
 //    {

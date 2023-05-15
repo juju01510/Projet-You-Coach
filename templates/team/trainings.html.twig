@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for training in team.trainings %}
+                {% for training in trainings %}
                     <tr>
                         <td>{{ training.date ? training.date|date('d / m / y') : '' }}</td>
                         <td>{{ training.date ? training.date|date('H:i') : '' }}</td>
