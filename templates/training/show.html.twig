@@ -8,10 +8,10 @@
             <h1>Entrainement</h1>
 
             {% if app.user.team %}
-                {{ form_start(formPresense) }}
-                {{ form_widget(formPresense) }}
+                {{ form_start(formPresence) }}
+                {{ form_widget(formPresence) }}
                 <button type="submit" class="custom-btn">Envoyer</button>
-                {{ form_end(formPresense) }}
+                {{ form_end(formPresence) }}
             {% endif %}
 
             <table class="table">

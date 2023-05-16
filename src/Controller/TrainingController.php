@@ -71,7 +71,7 @@ class TrainingController extends AbstractController
 
         return $this->render('training/show.html.twig', [
             'players' => $players,
-            'formPresense' => $form->createView(),
+            'formPresence' => $form->createView(),
             'training' => $training,
         ]);
     }
