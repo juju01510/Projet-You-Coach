@@ -61,7 +61,6 @@ class UserType extends AbstractType
                 'choice_attr' => [
                     'Joueur' => ['class' => 'roles'],
                     'Coach' => ['class' => 'roles'],
-                    'Manager' => ['class' => 'roles']
                 ]
             ])
             ->add('team', EntityType::class, [
@@ -116,15 +115,12 @@ class UserType extends AbstractType
                 'mapped' => false,
             ]);
 
-        // Data transformer
         $builder->get('roles')
             ->addModelTransformer(new CallbackTransformer(
                 function ($rolesArray) {
-                    // transform the array to a string
                     return count($rolesArray) ? $rolesArray[0] : null;
                 },
                 function ($rolesString) {
-                    // transform the string back to an array
                     return [$rolesString];
                 }
             ));
@@ -135,7 +131,6 @@ class UserType extends AbstractType
         $resolver->setRequired(['idClub']);
         $resolver->setDefaults([
             'data_class' => User::class,
-//            'validation_groups' => ['Default', 'email'],
         ]);
     }
 }
