@@ -13,6 +13,7 @@ use App\Repository\TrainingRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use DateTimeZone;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -33,49 +34,30 @@ class TeamController extends AbstractController
     }
 
     #[Route('/{id}/new', name: 'app_team_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, Club $club, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
+    public function new($id, Request $request, Club $club, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
         $team = new Team();
-        $team->setClub($club);
-
 
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
-        $id = $request->attributes->get('id');
-
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->get('photo')->getData();
-
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
             if ($image) {
                 $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
-
-                // Move the file to the directory where brochures are stored
                 try {
                     $image->move(
                         $this->getParameter('images_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
+
                 }
-
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
                 $team->setPhoto($newFilename);
+                $team->setClub($club);
             }
-
-            // ... persist the $product variable or any other work
-
-
-            $team = $form->getData();
-
-            $em = $doctrine->getManager();
             $em->persist($team);
             $em->flush();
 
@@ -83,7 +65,6 @@ class TeamController extends AbstractController
         }
 
         return $this->renderForm('team/new.html.twig', [
-            'id' => $id,
             'club' => $club,
             'form' => $form,
         ]);
@@ -109,12 +90,10 @@ class TeamController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_team_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Team $team, TeamRepository $teamRepository): Response
+    public function edit($id, Request $request, Team $team, TeamRepository $teamRepository): Response
     {
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
-
-        $id = $request->attributes->get('id');
 
         if ($form->isSubmitted() && $form->isValid()) {
             $teamRepository->save($team, true);
