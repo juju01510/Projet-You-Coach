@@ -53,7 +53,6 @@ class ClubController extends AbstractController
         }
 
         return $this->renderForm('club/new.html.twig', [
-            'user' => $user,
             'form' => $form,
         ]);
     }
