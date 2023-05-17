@@ -15,11 +15,9 @@ class TrainingPresenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('is_present', CheckboxType::class, [
-                'label' => 'Seras-tu là ?',
+            ->add('is_present', SubmitType::class, [
+                "label" => "Présent"
             ])
-//            ->add('player')
-//            ->add('training')
             ;
     }
 

@@ -70,6 +70,7 @@ class TrainingController extends AbstractController
         $this->redirectToRoute('app_home');
 
         return $this->render('training/show.html.twig', [
+            'user' => $this->getUser(),
             'players' => $players,
             'formPresence' => $form->createView(),
             'training' => $training,
