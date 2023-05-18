@@ -50,16 +50,15 @@
   left: 50%;
   margin-bottom: 1rem;
   cursor: pointer;
-  animation: next;animation-duration: 1.5s;
   animation-name: next;
+  animation-duration: 1.5s;
   animation-iteration-count: infinite;
+  &:hover {
+    scale:1.2;
+  }
   @include media-breakpoint-down(sm) {
     display: none;
   }
-}
-
-.arrow:hover {
-  scale: 1.2;
 }
 
 @keyframes next {
