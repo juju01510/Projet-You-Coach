@@ -18,7 +18,7 @@
       margin-top: 3rem;
     }
 
-    h2 {
+    h1 h2 {
       font-family: var(--main-font-bold);
       font-size: 2.2rem;
       @include media-breakpoint-down(sm) {
