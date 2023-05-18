@@ -18,13 +18,13 @@
       margin-top: 3rem;
     }
 
-    h1 h2 {
-      font-family: var(--main-font-bold);
-      font-size: 2.2rem;
-      @include media-breakpoint-down(sm) {
-        font-size: 1.9em;
-      }
-    }
+    //h1 h2 {
+    //  font-family: var(--main-font-bold);
+    //  font-size: 2.2rem;
+    //  @include media-breakpoint-down(sm) {
+    //    font-size: 1.9em;
+    //  }
+    //}
 
     p {
       font-size: 1.3rem;
