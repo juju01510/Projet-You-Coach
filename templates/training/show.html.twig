@@ -9,7 +9,7 @@
 
         {% if app.user.team %}
             {{ form_start(formPresence) }}
-            {{ form_widget(formPresence) }}
+            {{ form_widget(formPresence.is_present, {'attr' : {'class' : 'custom-btn'}}) }}
             {{ form_end(formPresence) }}
         {% endif %}
 
